@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Bhopal Plus</string>
+    <string name="password">Password</string>
+    <string name="contact_no">Contact Number</string>
+    <string name="login">Login</string>
+    <string name="log">Log in</string>
+    <string name="bhopal_smart_city_development_n_corporation_limited">Bhopal Smart City Development \n Corporation Limited</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="signup">SignUp</string>
+    <string name="sign">Sign Up</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="already_have_an_account">Already have an account</string>
+    <string name="phone_verification">Phone Verification</string>
+    <string name="verify">Verify</string>
+    <string name="enter_your_otp_code_here">Enter your OTP code here</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="complaint">Complaint</string>
+    <string name="feedback">Feedback</string>
+    <string name="submit">Submit</string>
+    <string name="report_incident">Report Incident</string>
+    <string name="please_describe_any_suggestion_or_issue">Please describe any suggestion or issue.</string>
+    <string name="profile">Profile</string>
+    <string name="about_us">About Us</string>
+    <string name="setting">Setting</string>
+    <string name="logout">Logout</string>
+    <string name="home">Home</string>
+    <string name="user_profile">User Profile</string>
+    <string name="update">Update</string>
+    <string name="example_gmail_com">example@gmail.com</string>
+    <string name="bhopal_plus">Bhopal Plus</string>
+    <string name="bhopal_covid_19_beds_availability">Bhopal Covid-19 Beds Availability</string>
+    <string name="isolation">ISOLATION</string>
+    <string name="capacity">Capacity :</string>
+    <string name="availiable">Availiable :</string>
+    <string name="oxygen">OXYGEN</string>
+    <string name="icu_hdu">ICU/HDU</string>
+    <string name="other_services">OTHER SERVICES</string>
+    <string name="do_you_want_to_exit">Do you want to exit ?</string>
+    <string name="location_permission">Location permission is required to run this app</string>
+    <string name="permission_denied_location">
+
+<![CDATA[If you reject LOCATION ACCESS permission, you can not use this app\n\nPlease turn on permissions at [Setting] > [Permission]]]>
+</string>
+    <string name="an_initiative_by_nbhopal_smart_city">An Initiative by \nBhopal Smart City</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="web">Web</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="emergency_call">Emergency Call</string>
+    <string name="add_details">Add Details</string>
+    <string name="gender">Gender</string>
+    <string name="resend_otp">Resend Otp</string>
+
+    <string name="somethingwentwrong">Something went wrong</string>
+</resources>

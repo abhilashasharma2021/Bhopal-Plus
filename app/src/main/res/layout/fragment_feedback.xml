@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.FeedbackFrag">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_marginBottom="5dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:id="@+id/ivBack"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="15dp"
+                        android:background="?actionBarItemBackground"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/back"
+                        app:tint="@color/black" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/feedback"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </RelativeLayout>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                app:cardElevation="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="10dp"
+                android:layout_height="280dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/rl"
+
+                    android:layout_height="wrap_content">
+
+                    <com.whinc.widget.ratingbar.RatingBar
+                        android:id="@+id/ratingStar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        app:rb_click_rating="true"
+                        app:rb_empty="@drawable/empty"
+                        app:rb_fill="@drawable/fill"
+                        app:rb_max_count="5"
+                        app:rb_space="-180dp"
+                        app:rb_touch_rating="true" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_margin="15dp"
+                        android:layout_below="@+id/ratingStar"
+                        android:background="@drawable/grey_stroke"
+                        android:layout_height="150dp">
+
+
+                        <EditText
+                            android:id="@+id/loginPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:background="@null"
+                            android:ems="150"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/lightblue"
+                            android:hint="@string/please_describe_any_suggestion_or_issue"
+                            android:inputType="text"
+                            android:maxLength="150"
+                            android:padding="10dp"
+                            android:textAlignment="gravity"
+                            android:textSize="14sp" />
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/loginButton"
+                        android:layout_width="230dp"
+                        android:layout_height="62dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/purple_200"
+                        android:text="@string/submit"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:cornerRadius="50dp" />
+
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</RelativeLayout>
