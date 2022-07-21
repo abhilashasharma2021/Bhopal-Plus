@@ -13,6 +13,8 @@ import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface JsonInterface {
@@ -42,7 +44,8 @@ public interface JsonInterface {
     Call<ResendOtpData>resendOtp(@FieldMap Map<String, String> params);
 
     @GET(API.showServices)
-    Call<HomeItemModel> showServicesItem();
+   // @Headers("Authorization: Bearer: $Constants.TOKEN")
+    Call<HomeItemModel> showServicesItem(@Header("Authorization")String token);
 
 
 

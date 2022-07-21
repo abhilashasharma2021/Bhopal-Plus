@@ -37,16 +37,12 @@ public class SignupData {
     public void setData(Data data) {
         this.data = data;
     }
-
-
     public class Data {
 
         @SerializedName("user_id")
         @Expose
         private Integer userId;
-        @SerializedName("_token")
-        @Expose
-        private String token;
+
         @SerializedName("mobile")
         @Expose
         private String mobile;
@@ -62,13 +58,6 @@ public class SignupData {
             this.userId = userId;
         }
 
-        public String getToken() {
-            return token;
-        }
-
-        public void setToken(String token) {
-            this.token = token;
-        }
 
         public String getMobile() {
             return mobile;
@@ -85,6 +74,5 @@ public class SignupData {
         public void setOtp(String otp) {
             this.otp = otp;
         }
-
     }
 }

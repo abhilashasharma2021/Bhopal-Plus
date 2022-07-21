@@ -138,9 +138,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SplashActivity.class));
-                finish();
                 SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, "");
+                SharedHelper.putKey(getApplicationContext(), AppConstats.USER_TOKEN, "");
                 startActivity(new Intent(getApplicationContext(), SplashActivity.class));
                 finish();
             }

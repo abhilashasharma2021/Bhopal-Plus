@@ -30,9 +30,11 @@ import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
 import com.bhopalplus.databinding.FragmentHomeBinding;
 
+import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.MyDialog.CustomDialog;
 import com.bhopalplus.utils.MyDialog.DialogInterface;
 import com.bhopalplus.utils.ReturnErrorToast;
+import com.bhopalplus.utils.SharedHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,7 @@ public class HomeFrag extends Fragment {
     Context context;
     List<HomeItemData> serviceList;
     HomeAdapter adapter;
+    String getUserToken="";
     RecyclerView.LayoutManager layoutManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +59,7 @@ public class HomeFrag extends Fragment {
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
         view = binding.getRoot();
         context = getActivity();
-
+        getUserToken = SharedHelper.getKey(getActivity(), AppConstats.USER_TOKEN);
         binding.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +90,7 @@ public class HomeFrag extends Fragment {
 
         final DialogInterface dialogInterface = new CustomDialog();
         dialogInterface.showDialog(R.layout.pr_dialog, getActivity());
-        Call<HomeItemModel> call = APIClient.getAPIClient().showServicesItem();
+        Call<HomeItemModel> call = APIClient.getAPIClient().showServicesItem("Bearer " +getUserToken);
         call.enqueue(new Callback<HomeItemModel>() {
             @Override
             public void onResponse(Call<HomeItemModel> call, Response<HomeItemModel> response) {
@@ -104,8 +107,12 @@ public class HomeFrag extends Fragment {
                             List<HomeItemModel.Datum> dataList = model.getData();
                             for (HomeItemModel.Datum data : dataList) {
                                 HomeItemData itemData = new HomeItemData();
-                                itemData.setServiceId(String.valueOf(data.getId()));
-                                itemData.setServiceImage(data.getPath());
+                                for (int i = 0; i <dataList.size() ; i++) {
+                                    itemData.setServiceId(String.valueOf(data.getId()));
+                                    itemData.setServiceName(data.getTitle());
+                                    itemData.setServiceImage(data.getPath());
+
+                                }
                                 serviceList.add(itemData);
                             }
 

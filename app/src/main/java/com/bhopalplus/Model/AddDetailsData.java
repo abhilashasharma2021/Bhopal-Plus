@@ -54,6 +54,9 @@ public class AddDetailsData {
         @SerializedName("gender")
         @Expose
         private String gender;
+        @SerializedName("_token")
+        @Expose
+        private String token;
         @SerializedName("dob")
         @Expose
         private String dob;
@@ -98,6 +101,14 @@ public class AddDetailsData {
             this.gender = gender;
         }
 
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
         public String getDob() {
             return dob;
         }
@@ -106,5 +117,4 @@ public class AddDetailsData {
             this.dob = dob;
         }
     }
-
 }

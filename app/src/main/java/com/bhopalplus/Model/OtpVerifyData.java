@@ -10,6 +10,9 @@ public class OtpVerifyData {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("_token")
+    @Expose
+    private String token;
     @SerializedName("data")
     @Expose
     private Data data;
@@ -30,14 +33,21 @@ public class OtpVerifyData {
         this.message = message;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public Data getData() {
         return data;
     }
 
     public void setData(Data data) {
         this.data = data;
-    }
-    public class Data {
+    }public class Data {
 
         @SerializedName("id")
         @Expose
@@ -60,6 +70,12 @@ public class OtpVerifyData {
         @SerializedName("dob")
         @Expose
         private Object dob;
+        @SerializedName("gender")
+        @Expose
+        private Object gender;
+        @SerializedName("complete_profile")
+        @Expose
+        private Integer completeProfile;
         @SerializedName("email_verified_at")
         @Expose
         private Object emailVerifiedAt;
@@ -124,6 +140,22 @@ public class OtpVerifyData {
 
         public void setDob(Object dob) {
             this.dob = dob;
+        }
+
+        public Object getGender() {
+            return gender;
+        }
+
+        public void setGender(Object gender) {
+            this.gender = gender;
+        }
+
+        public Integer getCompleteProfile() {
+            return completeProfile;
+        }
+
+        public void setCompleteProfile(Integer completeProfile) {
+            this.completeProfile = completeProfile;
         }
 
         public Object getEmailVerifiedAt() {

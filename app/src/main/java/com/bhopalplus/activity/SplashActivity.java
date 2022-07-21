@@ -42,7 +42,7 @@ import java.util.List;
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
     Handler mHandler;
-  String userId="";
+  String userId="",userToken="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +55,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
         userId = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
+        userToken = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_TOKEN);
 
         Dexter.withContext(SplashActivity.this)
                 .withPermissions(
@@ -71,11 +72,14 @@ public class SplashActivity extends AppCompatActivity {
 
 
                                 if (userId.equals("")){
-
                                     startActivity(new Intent(SplashActivity.this,LoginActivity .class));
                                     finish();
-                                }else {
+                                }else if (userToken.equals("")){
+                                    startActivity(new Intent(SplashActivity.this, AddUserDetailsActivity.class));
+                                    finish();
 
+                                }
+                                else {
                                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                     finish();
                                 }
@@ -87,7 +91,7 @@ public class SplashActivity extends AppCompatActivity {
                     }
                     @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
 
-                        token.continuePermissionRequest();
+                       token.continuePermissionRequest();
 
 
                     }

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bhopalplus.MainActivity;
 import com.bhopalplus.Model.OtpVerifyData;
 import com.bhopalplus.Model.ResendOtpData;
 import com.bhopalplus.Retrofit.APIClient;
@@ -39,7 +40,6 @@ public class OtpVerifyActivity extends AppCompatActivity {
 
         getMobile = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_MOBILE);
         getOTP = SharedHelper.getKey(getApplicationContext(), AppConstats.GetOtp);
-        getUserID = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
         Log.e("check",getOTP );
 
         binding.btnVerify.setOnClickListener(new View.OnClickListener() {
@@ -89,12 +89,11 @@ public class OtpVerifyActivity extends AppCompatActivity {
         Map<String, String> param = new HashMap<>();
         param.put("mobile", getMobile);
         param.put("otp", getOTP);
-        param.put("id", getUserID);
         Call<OtpVerifyData> call = APIClient.getAPIClient().otpVerify(param);
         call.enqueue(new Callback<OtpVerifyData>() {
             @Override
             public void onResponse(@NonNull Call<OtpVerifyData> call, @NonNull Response<OtpVerifyData> response) {
-                Log.e("check", response.toString());
+                Log.e("xzcxv", response.toString());
                 if (!response.isSuccessful()) {
                     ReturnErrorToast.showToast(OtpVerifyActivity.this);
                 }
@@ -130,11 +129,18 @@ public class OtpVerifyActivity extends AppCompatActivity {
 
                         }.start();
 
-
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, String.valueOf(userData.getId()));
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.USER_MOBILE, userData.getMobile());
+                        SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID,String.valueOf(userData.getId()) );
                         startActivity(new Intent(OtpVerifyActivity.this, AddUserDetailsActivity.class));
                         finish();
+
+                         /* *//*complete_profile=0 means profile not completed and 1 means completed*//*
+                        if (String.valueOf(userData.getCompleteProfile()).equals("0")){
+
+                        }else {
+                            startActivity(new Intent(OtpVerifyActivity.this, MainActivity.class));
+                            finish();
+                        }*/
+
 
                     } else {
                         Toast.makeText(OtpVerifyActivity.this, otpVerifyData.getMessage(), Toast.LENGTH_SHORT).show();

@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.MainActivity;
 import com.bhopalplus.Retrofit.APIClient;
@@ -21,8 +25,13 @@ import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
 import com.bhopalplus.utils.ReturnErrorToast;
 import com.bhopalplus.utils.SharedHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.security.auth.login.LoginException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +71,7 @@ String getUserMobile="";
                 else {
                     InternetConnectionInterface connectivity = new InternetConnectivity();
                     if (connectivity.isConnected(getApplicationContext())) {
-                        login();
+                        login(getUserMobile);
                     } else {
                         Toast.makeText(LoginActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
                     }
@@ -73,7 +82,7 @@ String getUserMobile="";
 
 
 
-        if (getUserMobile.equals("")){
+      if (getUserMobile.equals("")){
             binding.loginPhone.setHint("Enter Mobile Number");
         }else {
             binding.cbRember.setChecked(true);
@@ -97,33 +106,31 @@ String getUserMobile="";
     }
 
 
-    private void login() {
+
+   private void login(String getUserMobile) {
+
         Map<String, String> param = new HashMap<>();
         param.put("mobile", getUserMobile);
         Call<LoginData> call = APIClient.getAPIClient().userLogin(param);
         call.enqueue(new Callback<LoginData>() {
             @Override
             public void onResponse(@NonNull Call<LoginData> call, @NonNull Response<LoginData> response) {
-                Log.e("check", response.toString());
-                if (!response.isSuccessful()) {
-                    ReturnErrorToast.showToast(LoginActivity.this);
-                }
-
                 LoginData loginData = response.body();
-                if (loginData != null) {
-                    if (loginData.getResult()) {
+                  if(loginData.getMessage().equals("This number is not registred.")){
+                   //   loginData.getData().getMobile();
+                      Toast.makeText(LoginActivity.this, "Number is not register", Toast.LENGTH_SHORT).show();
+                  }
 
-                        LoginData.Data userdata=loginData.getData();
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, String.valueOf(userdata.getUserId()));
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.USER_MOBILE, userdata.getMobile());
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.USER_TOKEN, userdata.getToken());
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(LoginActivity.this, loginData.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                  else{
+
+                      LoginData.Data userdata=loginData.getData();
+                      SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, String.valueOf(userdata.getUserId()));
+                      SharedHelper.putKey(getApplicationContext(), AppConstats.USER_MOBILE, userdata.getMobile());
+                      SharedHelper.putKey(getApplicationContext(), AppConstats.USER_TOKEN, userdata.getToken());
+                      startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                      finish();
+
+                  }
 
             }
 

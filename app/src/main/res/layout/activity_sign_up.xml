@@ -89,7 +89,6 @@
             android:hint="@string/enter_mobile_number"
             android:textColorHint="@color/lightblue"
             android:inputType="phone"
-            android:ems="10"
             android:paddingStart="20dp"/>
 
 

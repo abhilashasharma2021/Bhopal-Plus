@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -28,8 +29,19 @@ import com.bhopalplus.utils.SharedHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,8 +49,9 @@ import retrofit2.Response;
 
 public class AddUserDetailsActivity extends AppCompatActivity {
     ActivityAddUserDetailsBinding binding;
-    String stName = "", stEmail = "", stAddress = "", stDob = "", stGender = "",getUserID="";
-    DatePickerDialog datePickerDialog;
+    String stName = "", stEmail = "", stAddress = "", stDob = "", stGender = "", getUserID = "", getUserToken = "";
+
+    final static String DATE_FORMAT = "dd-MM-yyyy";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +59,8 @@ public class AddUserDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getUserID = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
 
-        Log.e("dncjdcn", getUserID );
+
+        Log.e("dncjdcn", getUserID);
 
 
 
@@ -59,118 +73,83 @@ public class AddUserDetailsActivity extends AppCompatActivity {
                 stAddress = binding.etAddress.getText().toString();
                 stDob = binding.etDob.getText().toString();
                 stGender = binding.etGender.getText().toString();
-                if (TextUtils.isEmpty(stEmail)) {
-                    binding.etEmail.setError("Please enter Email Id !");
-                    binding.etEmail.requestFocus();
-                } else if (TextUtils.isEmpty(stName)) {
-                    binding.etName.setError("Please enter Name !");
-                    binding.etName.requestFocus();
-                }  else if (TextUtils.isEmpty(stAddress)) {
-                    binding.etAddress.setError("Please enter Address !");
-                    binding.etAddress.requestFocus();
-                } else if (TextUtils.isEmpty(stDob)) {
-                    binding.etDob.setError("Please enter Date of Birth !");
-                    binding.etDob.requestFocus();
-                } else if (TextUtils.isEmpty(stGender)) {
-                    binding.etGender.setError("Please enter Gender !");
-                    binding.etGender.requestFocus();
-                } else {
-                    InternetConnectionInterface connectivity = new InternetConnectivity();
-                    if (connectivity.isConnected(getApplicationContext())) {
-                        // startActivity(new Intent(AddUserDetailsActivity.this,MainActivity.class));
-                        addDetails();
-                    } else {
-                        Toast.makeText(AddUserDetailsActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
+
+                if (validation()) {
+
+                    if (!validateEmailAddress(stEmail)) {
+                        Toast.makeText(AddUserDetailsActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-               /* stEmail = binding.etEmail.getText().toString();
-                stName = binding.etName.getText().toString();
-                stAddress = binding.etAddress.getText().toString();
-                stDob = binding.etDob.getText().toString();
-                stGender = binding.etGender.getText().toString();
-               if (TextUtils.isEmpty(stEmail)) {
-                    binding.etEmail.setError("Please enter Email Id !");
-                    binding.etEmail.requestFocus();
-                } else if (TextUtils.isEmpty(stName)) {
-                    binding.etName.setError("Please enter Name !");
-                    binding.etName.requestFocus();
-                }  else if (TextUtils.isEmpty(stAddress)) {
-                    binding.etAddress.setError("Please enter Address !");
-                    binding.etAddress.requestFocus();
-                } else if (TextUtils.isEmpty(stDob)) {
-                    binding.etDob.setError("Please enter Date of Birth !");
-                    binding.etDob.requestFocus();
-                } else if (TextUtils.isEmpty(stGender)) {
-                    binding.etGender.setError("Please enter Gender !");
-                    binding.etGender.requestFocus();
-                } else {
-                    InternetConnectionInterface connectivity = new InternetConnectivity();
-                    if (connectivity.isConnected(getApplicationContext())) {
-                        addDetailsData();
-                    } else {
-                        Toast.makeText(AddUserDetailsActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
+                    else if (!isDateValid(stDob)){
+                        Toast.makeText(AddUserDetailsActivity.this, "Invalid Dob", Toast.LENGTH_SHORT).show();
                     }
-                }*/
-            }
-        });
-
-    }
-
-
-    private void addDetails(){
-
-        AndroidNetworking.post("http://128.199.176.121/bhopalplusbnest/api/adddetails")
-                .addBodyParameter("id", getUserID)
-                .addBodyParameter("email", stEmail)
-                .addBodyParameter("name", stName)
-                .addBodyParameter("address", stAddress)
-                .addBodyParameter("dob", stDob)
-                .addBodyParameter("gender", stGender)
-                .setPriority(Priority.HIGH)
-                .setTag("test")
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("rthtrh", "response: " + response);
-                        try {
-                            if (response.getString("result").equals("true")) {
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            } else {
-
-                            }
-
-
-                        } catch (JSONException e) {
-                            Log.e("bgh", "onResponse: " + e.getMessage());
-
+                    else {
+                        InternetConnectionInterface connectivity = new InternetConnectivity();
+                        if (connectivity.isConnected(getApplicationContext())) {
+                            addDetails(stEmail, stName, stAddress, stDob, stGender);
+                        } else {
+                            Toast.makeText(AddUserDetailsActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
                         }
                     }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        Log.e("hjkjk", "onError: " + anError.getMessage());
+                } else {
+                    validation();
+                }
 
 
-                    }
-                });
+            }
+        });
 
 
     }
 
+    public static boolean isDateValid(String date)
+    {
+        try {
+            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            df.setLenient(false);
+            df.parse(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
 
+    private Boolean validation(){
 
+        Boolean boolen=false;
+        if (binding.etEmail.getText().toString().isEmpty()){
 
-    private void addDetailsData(){
+            binding.etEmail.setError("Email Address Must Required");
+        }else  if (binding.etName.getText().toString().isEmpty()){
+            binding.etName.setError("Name Must Required");
+        }else  if (binding.etAddress.getText().toString().isEmpty()) {
+            binding.etAddress.setError("Address Must Required");
+        }
 
+        else  if (binding.etDob.getText().toString().isEmpty()) {
+            binding.etDob.setError("Dob Must Required");
+        }
+        else  if (binding.etGender.getText().toString().isEmpty()) {
+            binding.etGender.setError("Gender Must Required");
+        }
+        else {
+            boolen=true;
 
-        Log.e("ndjncj",getUserID );
-        Log.e("ndjncj",stAddress );
-        Log.e("ndjncj",stEmail );
-        Log.e("ndjncj",stGender );
-        Log.e("ndjncj",stDob );
-        Log.e("ndjncj",stName );
+        }
+        return boolen;
+    }
+    public static boolean validateEmailAddress(String stEmail)
+    {
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(stEmail);
+        return matcher.matches();
+    }
+    private void addDetails(String stEmail, String stName, String stAddress, String stDob, String stGender){
+
         Map<String, String> param = new HashMap<>();
         param.put("id", getUserID);
         param.put("email", stEmail);
@@ -184,7 +163,8 @@ public class AddUserDetailsActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<AddDetailsData> call, @NonNull Response<AddDetailsData> response) {
                 Log.e("vegdvgv", response.toString());
                 if (!response.isSuccessful()) {
-                    ReturnErrorToast.showToast(AddUserDetailsActivity.this);
+                    Toast.makeText(AddUserDetailsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                  //  ReturnErrorToast.showToast(AddUserDetailsActivity.this);
                 }
 
                 AddDetailsData addDetailsData = response.body();
@@ -198,6 +178,7 @@ public class AddUserDetailsActivity extends AppCompatActivity {
                         SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ADDRESS, userdata.getAddress());
                         SharedHelper.putKey(getApplicationContext(), AppConstats.USER_DOB, userdata.getDob());
                         SharedHelper.putKey(getApplicationContext(), AppConstats.USER_GENDER, userdata.getGender());
+                        SharedHelper.putKey(getApplicationContext(), AppConstats.USER_TOKEN, userdata.getToken());
                         startActivity(new Intent(AddUserDetailsActivity.this, MainActivity.class));
                         finish();
                     } else {
@@ -214,4 +195,6 @@ public class AddUserDetailsActivity extends AppCompatActivity {
         });
 
     }
+
+
 }
