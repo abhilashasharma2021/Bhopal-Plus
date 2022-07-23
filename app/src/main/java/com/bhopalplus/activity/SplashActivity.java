@@ -51,9 +51,6 @@ public class SplashActivity extends AppCompatActivity {
         findViewById(R.id.splash_logo).startAnimation(AnimationUtils.loadAnimation(this, R.anim.translate_from_top));
         findViewById(R.id.tv_splash).startAnimation(AnimationUtils.loadAnimation(this, R.anim.translate_from_bottom));
 
-
-
-
         userId = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
         userToken = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_TOKEN);
 

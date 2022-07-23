@@ -118,7 +118,7 @@ String getUserMobile="";
                 LoginData loginData = response.body();
                   if(loginData.getMessage().equals("This number is not registred.")){
                    //   loginData.getData().getMobile();
-                      Toast.makeText(LoginActivity.this, "Number is not register", Toast.LENGTH_SHORT).show();
+                      Toast.makeText(LoginActivity.this, "This Number is not register", Toast.LENGTH_SHORT).show();
                   }
 
                   else{

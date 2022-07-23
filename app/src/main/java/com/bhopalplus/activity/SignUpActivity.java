@@ -89,7 +89,7 @@ private void sendData() {
                 SignupData signupData = response.body();
 
                 if (signupData.getMessage().equals("This number is already registered.")) {
-                    Toast.makeText(SignUpActivity.this, "Number is already registered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "This Number is already registered", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     SignupData.Data userdata=signupData.getData();

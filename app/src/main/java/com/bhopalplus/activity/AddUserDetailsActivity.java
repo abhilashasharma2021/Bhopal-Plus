@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -49,7 +50,7 @@ import retrofit2.Response;
 
 public class AddUserDetailsActivity extends AppCompatActivity {
     ActivityAddUserDetailsBinding binding;
-    String stName = "", stEmail = "", stAddress = "", stDob = "", stGender = "", getUserID = "", getUserToken = "";
+    String stName = "", stEmail = "", stAddress = "", stDob = "", getUserID = "", StrFinalStatus = "";
 
     final static String DATE_FORMAT = "dd-MM-yyyy";
     @Override
@@ -62,7 +63,28 @@ public class AddUserDetailsActivity extends AppCompatActivity {
 
         Log.e("dncjdcn", getUserID);
 
+        binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                View radioButton = binding.radioGroup.findViewById(checkedId);
+                int index = binding.radioGroup.indexOfChild(radioButton);
+
+                Log.e("wedgdsgdf", index+"" );
+                switch (index) {
+                    case 0:
+                        StrFinalStatus = "male";
+                        break;
+                    case 1:
+                        StrFinalStatus = "Female";
+                        break;
+                    case 2:
+                        StrFinalStatus = "Others";
+                        break;
+                }
+            }
+        });
 
         binding.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +94,6 @@ public class AddUserDetailsActivity extends AppCompatActivity {
                 stName = binding.etName.getText().toString();
                 stAddress = binding.etAddress.getText().toString();
                 stDob = binding.etDob.getText().toString();
-                stGender = binding.etGender.getText().toString();
 
                 if (validation()) {
 
@@ -86,7 +107,7 @@ public class AddUserDetailsActivity extends AppCompatActivity {
                     else {
                         InternetConnectionInterface connectivity = new InternetConnectivity();
                         if (connectivity.isConnected(getApplicationContext())) {
-                            addDetails(stEmail, stName, stAddress, stDob, stGender);
+                            addDetails(stEmail, stName, stAddress, stDob, StrFinalStatus);
                         } else {
                             Toast.makeText(AddUserDetailsActivity.this, "Please check internet connection", Toast.LENGTH_SHORT).show();
                         }
@@ -130,8 +151,9 @@ public class AddUserDetailsActivity extends AppCompatActivity {
         else  if (binding.etDob.getText().toString().isEmpty()) {
             binding.etDob.setError("Dob Must Required");
         }
-        else  if (binding.etGender.getText().toString().isEmpty()) {
-            binding.etGender.setError("Gender Must Required");
+        else if (StrFinalStatus.isEmpty()) {
+
+            Toast.makeText(AddUserDetailsActivity.this, "Please select gender", Toast.LENGTH_SHORT).show();
         }
         else {
             boolen=true;
@@ -148,7 +170,7 @@ public class AddUserDetailsActivity extends AppCompatActivity {
         matcher = pattern.matcher(stEmail);
         return matcher.matches();
     }
-    private void addDetails(String stEmail, String stName, String stAddress, String stDob, String stGender){
+    private void addDetails(String stEmail, String stName, String stAddress, String stDob, String StrFinalStatus){
 
         Map<String, String> param = new HashMap<>();
         param.put("id", getUserID);
@@ -156,7 +178,7 @@ public class AddUserDetailsActivity extends AppCompatActivity {
         param.put("name", stName);
         param.put("address", stAddress);
         param.put("dob", stDob);
-        param.put("gender", stGender);
+        param.put("gender", StrFinalStatus);
         Call<AddDetailsData> call = APIClient.getAPIClient().addDetails(param);
         call.enqueue(new Callback<AddDetailsData>() {
             @Override

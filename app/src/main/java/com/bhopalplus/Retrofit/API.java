@@ -11,4 +11,9 @@ public class API {
      public static final String resendOtp = "resend-otp";
      public static final String showServices = "service";
      public static final String addUserDetails = "adddetails";
+     public static final String showProfile = "show-profile";
+     public static final String updateProfile = "edit-profile";
+     public static final String showBanner = "banner";
+     public static final String aboutUS = "aboutUS";
+     public static final String feedback = "feedback";
 }

@@ -88,6 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:id="@+id/txWeb"
                         android:text="http://smartbhopal.city/"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -140,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Info@gmail.com"
+                        android:id="@+id/txEmail"
                         android:textColorHint="@color/lightblue"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -192,6 +194,7 @@
                         android:text="+91-9898989898"
                         android:textColor="@color/black"
                         android:textSize="14sp"
+                        android:id="@+id/txContact"
                         android:textColorHint="@color/lightblue"
                         android:textStyle="normal">
 
@@ -242,6 +245,7 @@
                         android:text="MP Nagar Zone-1 Bhopal M.P"
                         android:textColor="@color/black"
                         android:textSize="14sp"
+                        android:id="@+id/txAddress"
                         android:textColorHint="@color/lightblue"
                         android:textStyle="normal">
 

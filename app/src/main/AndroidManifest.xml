@@ -22,7 +22,9 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.AddUserDetailsActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+        </activity>
         <activity
             android:name=".activity.AboutUsActivity"
             android:exported="false" />

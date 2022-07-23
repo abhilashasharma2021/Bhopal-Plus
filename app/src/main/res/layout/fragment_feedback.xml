@@ -88,20 +88,20 @@
 
 
                         <EditText
-                            android:id="@+id/loginPhone"
+                            android:id="@+id/etComment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="15dp"
                             android:background="@null"
                             android:ems="150"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/lightblue"
                             android:hint="@string/please_describe_any_suggestion_or_issue"
                             android:inputType="text"
                             android:maxLength="150"
                             android:padding="10dp"
                             android:textAlignment="gravity"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/lightblue"
                             android:textSize="14sp" />
 
 

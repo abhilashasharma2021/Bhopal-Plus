@@ -3,6 +3,7 @@ package com.bhopalplus.fragment;
 import android.content.Context;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -22,10 +23,13 @@ import android.widget.Toast;
 
 
 import com.bhopalplus.Adapters.HomeAdapter;
+import com.bhopalplus.Adapters.SliderAdapter;
 import com.bhopalplus.Data.HomeItemData;
+import com.bhopalplus.Data.SliderItemData;
 import com.bhopalplus.Model.HomeItemModel;
 import com.bhopalplus.MainActivity;
 
+import com.bhopalplus.Model.SliderModel;
 import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
 import com.bhopalplus.databinding.FragmentHomeBinding;
@@ -33,8 +37,10 @@ import com.bhopalplus.databinding.FragmentHomeBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.MyDialog.CustomDialog;
 import com.bhopalplus.utils.MyDialog.DialogInterface;
-import com.bhopalplus.utils.ReturnErrorToast;
 import com.bhopalplus.utils.SharedHelper;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +55,12 @@ public class HomeFrag extends Fragment {
     View view;
     Context context;
     List<HomeItemData> serviceList;
+    List<SliderItemData> bannerList;
     HomeAdapter adapter;
-    String getUserToken="";
+    SliderAdapter sliderAdapter;
+    String getUserToken = "";
     RecyclerView.LayoutManager layoutManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +77,13 @@ public class HomeFrag extends Fragment {
                 startActivity(intent);
             }
         });
+        binding.imageSlider.setIndicatorAnimation(IndicatorAnimations.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        binding.imageSlider.setSliderTransformAnimation(SliderAnimations.CUBEOUTROTATIONTRANSFORMATION);
+        binding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        binding.imageSlider.setIndicatorSelectedColor(Color.WHITE);
+        binding.imageSlider.setIndicatorUnselectedColor(getResources().getColor(R.color.purple_200));
+        binding.imageSlider.setScrollTimeInSec(3); //set scroll delay in seconds :
+        binding.imageSlider.startAutoCycle();
 
 
         binding.rvService.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -79,18 +95,17 @@ public class HomeFrag extends Fragment {
             }
         });
 
-
+        show_Bannner();
         show_Services();
         return view;
     }
-
 
 
     private void show_Services() {
 
         final DialogInterface dialogInterface = new CustomDialog();
         dialogInterface.showDialog(R.layout.pr_dialog, getActivity());
-        Call<HomeItemModel> call = APIClient.getAPIClient().showServicesItem("Bearer " +getUserToken);
+        Call<HomeItemModel> call = APIClient.getAPIClient().showServicesItem("Bearer " + getUserToken);
         call.enqueue(new Callback<HomeItemModel>() {
             @Override
             public void onResponse(Call<HomeItemModel> call, Response<HomeItemModel> response) {
@@ -107,7 +122,7 @@ public class HomeFrag extends Fragment {
                             List<HomeItemModel.Datum> dataList = model.getData();
                             for (HomeItemModel.Datum data : dataList) {
                                 HomeItemData itemData = new HomeItemData();
-                                for (int i = 0; i <dataList.size() ; i++) {
+                                for (int i = 0; i < dataList.size(); i++) {
                                     itemData.setServiceId(String.valueOf(data.getId()));
                                     itemData.setServiceName(data.getTitle());
                                     itemData.setServiceImage(data.getPath());
@@ -118,12 +133,12 @@ public class HomeFrag extends Fragment {
 
                             dialogInterface.hideDialog();
                             if (getActivity() != null) {
-                                adapter = new HomeAdapter(serviceList,getActivity() );
+                                adapter = new HomeAdapter(serviceList, getActivity());
                                 binding.rvService.setAdapter(adapter);
                             }
-                        }else {
+                        } else {
                             dialogInterface.hideDialog();
-                            Toast.makeText(getActivity(),"SomeThing Went Wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "SomeThing Went Wrong", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -140,6 +155,7 @@ public class HomeFrag extends Fragment {
 
 
     }
+
     public void showToast() {
         LayoutInflater infl = getLayoutInflater();
         View layout = infl.inflate(R.layout.toast_layout, getActivity().findViewById(R.id.toast_layout_root));
@@ -152,5 +168,55 @@ public class HomeFrag extends Fragment {
         toast.show();
     }
 
+    private void show_Bannner() {
 
+        Call<SliderModel> call = APIClient.getAPIClient().showBanner("Bearer " + getUserToken);
+        call.enqueue(new Callback<SliderModel>() {
+            @Override
+            public void onResponse(Call<SliderModel> call, Response<SliderModel> response) {
+
+                Log.e("cjkjcj", "onResponse: "+response);
+                if (!response.isSuccessful()) {
+
+                    showToast();
+
+                } else {
+                    SliderModel model = response.body();
+
+                    if (model != null) {
+                        if (model.getResult()) {
+                            bannerList = new ArrayList<>();
+                            List<SliderModel.Datum> dataList = model.getData();
+                            for (SliderModel.Datum data : dataList) {
+                                SliderItemData itemData = new SliderItemData();
+                                for (int i = 0; i < dataList.size(); i++) {
+                                    itemData.setSliderImage(data.getPath());
+
+                                }
+                                bannerList.add(itemData);
+                            }
+
+
+                            if (getActivity() != null) {
+                                sliderAdapter = new SliderAdapter(bannerList, getActivity());
+                                binding.imageSlider.setSliderAdapter(sliderAdapter);
+                            }
+                        } else {
+
+                            Toast.makeText(getActivity(), "SomeThing Went Wrong", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<SliderModel> call, Throwable t) {
+                Log.e("eryruiyd", t.getMessage() + "msg");
+
+            }
+        });
+
+            }
 }
