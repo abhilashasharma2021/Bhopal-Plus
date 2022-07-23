@@ -22,6 +22,8 @@ import com.bhopalplus.Retrofit.APIClient;
 import com.bhopalplus.activity.LoginActivity;
 import com.bhopalplus.databinding.FragmentAboutUsBinding;
 import com.bhopalplus.utils.AppConstats;
+import com.bhopalplus.utils.InternetConnection.InternetConnectionInterface;
+import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
 import com.bhopalplus.utils.SharedHelper;
 import com.google.android.gms.common.api.Api;
 
@@ -55,8 +57,15 @@ public class AboutUsFrag extends Fragment {
             }
         });
 
+        InternetConnectionInterface connectivity = new InternetConnectivity();
+        if (connectivity.isConnected(getActivity())) {
+            about_Us();
 
-        about_Us();
+        } else {
+            Toast.makeText(getActivity(), "Please check internet connection", Toast.LENGTH_SHORT).show();
+        }
+
+
         return view;
     }
 

@@ -76,7 +76,8 @@ public interface JsonInterface {
     @GET(API.aboutUS)
     Call<AboutUsModel> aboutUs(@Header("Authorization")String token);
 
-    @GET(API.feedback)
-    Call<FeedbackModel> feedback(@Header("Authorization")String token);
+    @POST(API.feedback)
+    Call<FeedbackModel> feedback(@Query("star") String star,@Query("feedback") String feedback,
+            @Header("Authorization")String token);
 
 }
