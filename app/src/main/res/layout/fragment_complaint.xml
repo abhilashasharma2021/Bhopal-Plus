@@ -97,7 +97,7 @@
                     android:layout_marginBottom="10dp">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/loginButton"
+                        android:id="@+id/btSent"
                         android:layout_width="230dp"
                         android:layout_height="62dp"
                         android:layout_centerHorizontal="true"

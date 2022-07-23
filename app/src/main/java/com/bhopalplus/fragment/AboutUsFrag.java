@@ -1,6 +1,7 @@
 package com.bhopalplus.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,11 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bhopalplus.MainActivity;
 import com.bhopalplus.Model.AboutUsModel;
 import com.bhopalplus.Model.AddDetailsData;
+import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.Model.ShowProfileModel;
 import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
+import com.bhopalplus.activity.LoginActivity;
 import com.bhopalplus.databinding.FragmentAboutUsBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.SharedHelper;
@@ -42,6 +46,17 @@ public class AboutUsFrag extends Fragment {
         view=binding.getRoot();
         context = getActivity();
         getUserToken = SharedHelper.getKey(getActivity(), AppConstats.USER_TOKEN);
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+                getActivity().finish();
+            }
+        });
+
+
+        about_Us();
         return view;
     }
 
@@ -51,30 +66,24 @@ public class AboutUsFrag extends Fragment {
        call.enqueue(new Callback<AboutUsModel>() {
            @Override
            public void onResponse(Call<AboutUsModel> call, Response<AboutUsModel> response) {
-              /* if (!response.isSuccessful()) {
-                   Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+               AboutUsModel userData = response.body();
+               if(userData.getMessage().equals("data not found")){
+                   Toast.makeText(getActivity(),"data not found", Toast.LENGTH_SHORT).show();
+               }
+
+               else{
+                   AboutUsModel.Data aboutUsData=userData.getData();
+                   binding.txWeb.setText(aboutUsData.getWebSite());
+                   binding.txContact.setText(aboutUsData.getContact());
+                   binding.txAddress.setText(aboutUsData.getAddress());
+                   binding.txEmail.setText(aboutUsData.getEmail());
 
                }
 
-               AboutUsModel aboutUslData = response.body();
-               if (aboutUslData != null) {
-                   if (aboutUslData.getResult()) {
-
-                       binding.txWeb.setText(aboutUslData.getData().getEmail());
-                       binding.txContact.setText(aboutUslData.getData().getName());
-                       binding.txAddress.setText(aboutUslData.getData().getAddress());
-                       binding.txEmail.setText(aboutUslData.getData().getDob());
 
 
-
-
-                   } else {
-                       Toast.makeText(getActivity(), aboutUslData.getMessage(), Toast.LENGTH_SHORT).show();
-                   }
-               }
-
-           }*/
            }
+
 
 
            @Override

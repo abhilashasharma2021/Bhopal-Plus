@@ -26,9 +26,6 @@
 
         </activity>
         <activity
-            android:name=".activity.AboutUsActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.SettingActivity"
             android:exported="false" />
         <activity

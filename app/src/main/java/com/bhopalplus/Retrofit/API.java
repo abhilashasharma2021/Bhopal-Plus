@@ -14,6 +14,6 @@ public class API {
      public static final String showProfile = "show-profile";
      public static final String updateProfile = "edit-profile";
      public static final String showBanner = "banner";
-     public static final String aboutUS = "aboutUS";
+     public static final String aboutUS = "aboutus";
      public static final String feedback = "feedback";
 }
