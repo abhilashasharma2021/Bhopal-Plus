@@ -4,11 +4,14 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 
 import com.bhopalplus.R;
 import com.bhopalplus.databinding.FragmentComplaintBinding;
+import com.bhopalplus.utils.ImageUtils;
+import com.bumptech.glide.Glide;
 import com.jaiselrahman.filepicker.activity.FilePickerActivity;
 import com.jaiselrahman.filepicker.config.Configurations;
 import com.jaiselrahman.filepicker.model.MediaFile;
@@ -25,16 +30,18 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import iam.thevoid.mediapicker.rxmediapicker.Purpose;
+import iam.thevoid.mediapicker.rxmediapicker.RxMediaPicker;
+
 public class ComplaintFragment extends Fragment {
     FragmentComplaintBinding binding;
     View view;
     Context context;
-    public static final int FILE_IMAGE_REQUEST_CODE = 1111;
     public static final int FILE_VIDEO_REQUEST_CODE = 8989;
-    String filePath = "";
+    String filePath = "",strDescription="";
     ArrayList<File> fileList = new ArrayList<>();
-
-
+    private File gallery_file;
+    String frontp = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,60 +50,49 @@ public class ComplaintFragment extends Fragment {
         binding = FragmentComplaintBinding.inflate(getLayoutInflater(), container, false);
         view = binding.getRoot();
         context = getActivity();
-
-
-        /*type 0= TEXT, 1=IMAGE, 2=VIDEO*/
-        binding.btSent.setOnClickListener(new View.OnClickListener() {
+        binding.cdPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // strDescription = etDescription.getText().toString().trim();
+               /* RxMediaPicker.builder(getActivity())
+                        .pick(Purpose.Pick.IMAGE)
+                        .take(Purpose.Take.PHOTO)
+                        .build()
+                        .subscribe(filepath -> {
+                            Bitmap bitmap = ImageUtils.imageCompress(ImageUtils.getRealPath(getActivity(), filepath));
+                            gallery_file = ImageUtils.bitmapToFile(bitmap, getActivity());
+                            Glide.with(getActivity()).load(gallery_file).into(binding.ivPhoto);
+                            frontp = gallery_file.toString();
 
-          //      int selectRadio = radioGroup.getCheckedRadioButtonId();
-               // fileRadioButton = findViewById(selectRadio);
-
-             /*   if (selectRadio == -1) {
-                    Toast.makeText(getActivity(), "Select one from the above", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    if (fileRadioButton.getText().equals("Attach Image")) {
-
-                        Intent intent = new Intent(getContext(), FilePickerActivity.class);
-                        intent.putExtra(FilePickerActivity.CONFIGS, new Configurations.Builder()
-                                .setCheckPermission(true)
-                                .setShowImages(true)
-                                .setShowVideos(false)
-                                .enableImageCapture(true)
-                                .setMaxSelection(2)
-                                .setSkipZeroSizeFiles(true)
-                                .build());
-                        startActivityForResult(intent, FILE_IMAGE_REQUEST_CODE);
-
-                        // Toast.makeText(UploadFileNewPostActivity.this, "Coming soon", Toast.LENGTH_SHORT).show();
-                    } else if (fileRadioButton.getText().equals("Attach Video")) {
-                        Intent intent = new Intent(getActivity(), FilePickerActivity.class);
-                        intent.putExtra(FilePickerActivity.CONFIGS, new Configurations.Builder()
-                                .setCheckPermission(true)
-                                .setShowImages(false)
-                                .setShowVideos(true)
-                                .enableImageCapture(true)
-                                .setMaxSelection(1)
-                                .setSkipZeroSizeFiles(true)
-                                .build());
-                        startActivityForResult(intent, FILE_VIDEO_REQUEST_CODE);
-
-                        // Toast.makeText(UploadFileActivity.this, "Coming soon", Toast.LENGTH_SHORT).show();
-                    } else if (fileRadioButton.getText().equals("Text")) {
-
-                      //  text_Post("0", strDescription);
-                        //    Toast.makeText(UploadFileNewPostActivity.this, "Text", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }*/
+                        });*/
 
 
             }
         });
+
+        binding.cdVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+              /*  Log.e("TAG", "onClick: ");
+                Intent intent = new Intent(getContext(), FilePickerActivity.class);
+                intent.putExtra(FilePickerActivity.CONFIGS, new Configurations.Builder()
+                        .setCheckPermission(true)
+                        .setShowImages(false)
+                        .setShowVideos(true)
+                        .enableImageCapture(true)
+                        .setMaxSelection(1)
+                        .setSkipZeroSizeFiles(true)
+                        .build());
+                startActivityForResult(intent, FILE_VIDEO_REQUEST_CODE);
+
+*/
+
+
+
+            }
+        });
+
+
 
         return view;
 
@@ -107,42 +103,6 @@ public class ComplaintFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == FILE_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            List<MediaFile> mediaFiles = data.getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES);
-
-            Log.e("ashjkgdfhsh", mediaFiles+"");
-
-            if (mediaFiles != null) {
-
-                for (int i = 0; i < mediaFiles.size(); i++) {
-                    Log.e("cscj", String.valueOf(mediaFiles.get(i).getPath()));
-
-                    filePath = mediaFiles.get(i).getPath();
-
-                    Log.e("fncjdshfckj", filePath);
-
-                    fileList.add(new File(filePath));
-
-                  /*  btnADD.setText("POST SUCCESSFULLY ADDED");
-                    lottie.setVisibility(View.VISIBLE);*/
-
-
-                }
-
-                for (int i = 0; i < fileList.size(); i++) {
-
-                    Log.e("skasksasasa", fileList.get(i).toString());
-                }
-
-             //   uploadFiles(fileList, "1", strDescription);
-
-            } else {
-              /*  btnADD.setText("ADD FILE");
-                lottie.setVisibility(View.GONE);*/
-            }
-        }
-
 
         //////VIDEO/////////
 
@@ -161,21 +121,27 @@ public class ComplaintFragment extends Fragment {
 
                     fileList.add(new File(filePath));
 
-                    /*btnADD.setText("POST SUCCESSFULLY ADDED");
-                    lottie.setVisibility(View.VISIBLE);*/
+                    Bitmap thumbnail = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.FULL_SCREEN_KIND);
+                   binding.ivVideo.setImageBitmap(thumbnail);
 
 
                 }
+
                 if (fileList.size()>0){
+                    binding.btSent.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            strDescription = binding.etDescription.getText().toString().trim();
 
-                   // uploadFiles(fileList, "2", strDescription);
+                            // uploadFiles(fileList, strDescription);
+                        }
+                    });
+
+
                 }
 
 
 
-            } else {
-              /*  btnADD.setText("ADD FILE");
-                lottie.setVisibility(View.GONE);*/
             }
         }
 

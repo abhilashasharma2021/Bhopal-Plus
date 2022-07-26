@@ -72,7 +72,7 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:id="@+id/rl_tool"
+                        android:id="@+id/rlHome"
                         android:background="@drawable/bluelight_round"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -102,7 +102,7 @@
 
 
                     <RelativeLayout
-                        android:id="@+id/rl_challange"
+                        android:id="@+id/rlProfile"
                         android:layout_margin="10dp"
                         android:background="@drawable/bluelight_round"
                         android:layout_width="match_parent"
@@ -131,7 +131,7 @@
 
                     </RelativeLayout>
                     <RelativeLayout
-                        android:id="@+id/rl_setting"
+                        android:id="@+id/rlComplaint"
                         android:layout_margin="10dp"
                         android:background="@drawable/bluelight_round"
                         android:layout_width="match_parent"
@@ -161,6 +161,7 @@
 
                     <RelativeLayout
                         android:layout_margin="10dp"
+                        android:id="@+id/rlFeedback"
                         android:background="@drawable/bluelight_round"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -192,6 +193,7 @@
                         android:background="@drawable/bluelight_round"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:id="@+id/rlAbout"
                         android:paddingLeft="10dp">
 
                         <ImageView
@@ -247,18 +249,18 @@
                         android:layout_width="230dp"
                         android:layout_height="62dp"
                         android:layout_marginStart="15dp"
-                        app:iconGravity="start"
-                        android:textAlignment="textStart"
                         android:backgroundTint="@color/white"
                         android:text="@string/logout"
-                        app:icon="@drawable/logout"
-                        app:iconSize="25dp"
-
-                        app:iconTint="@color/black"
+                        android:textAlignment="textStart"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        app:cornerRadius="50dp" />
+
+                        app:cornerRadius="50dp"
+                        app:icon="@drawable/logout"
+                        app:iconGravity="start"
+                        app:iconSize="25dp"
+                        app:iconTint="@color/black" />
 
 
 

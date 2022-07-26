@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bhopalplus.activity.SplashActivity;
 import com.bhopalplus.fragment.AboutUsFrag;
@@ -35,23 +36,30 @@ import com.google.android.material.tabs.TabLayout;
 
 import softpro.naseemali.ShapedNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
- public static DrawerLayout drawerlayout;
- Button btLogout;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
+    public static DrawerLayout drawerlayout;
+    Button btLogout;
     ShapedNavigationView nav_view;
     BottomNavigationView bottomNav;
     ImageView ivCancel;
+    RelativeLayout rlHome, rlProfile, rlComplaint, rlFeedback, rlAbout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         bottomNav = findViewById(R.id.bottom_navigation);
-        btLogout=findViewById(R.id.btLogout);
+        btLogout = findViewById(R.id.btLogout);
+        rlHome = findViewById(R.id.rlHome);
 
         drawerlayout = findViewById(R.id.drawerlayout);
         nav_view = findViewById(R.id.nav_view);
         ivCancel = findViewById(R.id.ivCancel);
+        rlProfile = findViewById(R.id.rlProfile);
+        rlComplaint = findViewById(R.id.rlComplaint);
+        rlFeedback = findViewById(R.id.rlFeedback);
+        rlAbout = findViewById(R.id.rlAbout);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFrag()).commit();
@@ -61,9 +69,51 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         ivCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               drawerlayout.closeDrawer(GravityCompat.START);
+                drawerlayout.closeDrawer(GravityCompat.START);
             }
         });
+
+
+        rlHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFrag()).commit();
+                drawerlayout.closeDrawer(GravityCompat.START);
+            }
+        });
+        rlProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserProfileFrag()).commit();
+                drawerlayout.closeDrawer(GravityCompat.START);
+            }
+        });
+
+
+        rlComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ComplaintFragment()).commit();
+                drawerlayout.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        rlFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FeedbackFrag()).commit();
+                drawerlayout.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        rlAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUsFrag()).commit();
+                drawerlayout.closeDrawer(GravityCompat.START);
+            }
+        });
+
 
         btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,21 +124,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
         bottomNav.setOnNavigationItemSelectedListener(this);
-        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                /*if (item.getItemId() == R.id.category) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AllCategoryFragment()).commit();
-                    drawerlayout.closeDrawer(GravityCompat.START);
 
 
-                }*/
-                return false;
-            }
-
-        });
-
-}
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -102,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             case R.id.nav_complaint:
 
-              //  item.getIcon().setTint(ContextCompat.getColor());
+                //  item.getIcon().setTint(ContextCompat.getColor());
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ComplaintFragment()).commit();
                 drawerlayout.closeDrawer(GravityCompat.START);
                 break;
@@ -115,16 +153,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.nav_feedback:
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FeedbackFrag()).commit();
-               drawerlayout.closeDrawer(GravityCompat.START);
+                drawerlayout.closeDrawer(GravityCompat.START);
                 break;
 
             case R.id.nav_about:
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUsFrag()).commit();
-               drawerlayout.closeDrawer(GravityCompat.START);
+                drawerlayout.closeDrawer(GravityCompat.START);
                 break;
         }
-            return true;
+        return true;
     }
 
     public void logout() {
@@ -158,8 +196,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    @Override
-    public void onClick(View view) {
 
-    }
 }

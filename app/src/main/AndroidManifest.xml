@@ -7,6 +7,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -17,19 +23,38 @@
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/logo"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.BhopalPlus"
         android:usesCleartextTraffic="true">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.bhopalplus.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity
-            android:name=".activity.AddUserDetailsActivity"
+            android:name=".activity.YogaGuideActivity"
             android:exported="false" >
+
 
         </activity>
         <activity
-            android:name=".activity.SettingActivity"
+            android:name=".activity.ContactPsychologistActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ServicesDetailsActivity"
+            android:name=".activity.ReportIncidentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TeleConsultation"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddUserDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".activity.OtpVerifyActivity"
@@ -39,7 +64,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true">
@@ -48,10 +73,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

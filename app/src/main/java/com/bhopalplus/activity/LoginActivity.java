@@ -11,27 +11,23 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
 import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.MainActivity;
 import com.bhopalplus.Retrofit.APIClient;
+
 import com.bhopalplus.databinding.ActivityLoginBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.InternetConnection.InternetConnectionInterface;
 import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
-import com.bhopalplus.utils.ReturnErrorToast;
+
 import com.bhopalplus.utils.SharedHelper;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.security.auth.login.LoginException;
 
 import retrofit2.Call;
 import retrofit2.Callback;

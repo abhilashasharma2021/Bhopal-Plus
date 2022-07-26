@@ -18,7 +18,7 @@
     <string name="complaint">Complaint</string>
     <string name="feedback">Feedback</string>
     <string name="submit">Submit</string>
-    <string name="report_incident">Report Incident</string>
+    <string name="report_incident">Upload Incident</string>
     <string name="please_describe_any_suggestion_or_issue">Please describe any suggestion or issue.</string>
     <string name="profile">Profile</string>
     <string name="about_us">About Us</string>
@@ -57,4 +57,21 @@
     <string name="other">Other</string>
 
     <string name="somethingwentwrong">Something went wrong</string>
+    <string name="tele_consultation">Tele Consultation</string>
+    <string name="call_now">Call Now</string>
+    <string name="send">Send</string>
+    <string name="contact_psychologist">Contact Psychologist</string>
+    <string name="government">Government</string>
+    <string name="yoga_guide">Yoga Guide</string>
+    <string name="live_yoga_session">Live Yoga Session -</string>
+
+    <string name="choose_image_source">Choose Image Resource</string>
+    <string name="no_app_for_action">No app found to perform this action</string>
+    <string name="write_permission">Write External storage Permission not specified</string>
+    <string name="unable_to_load_image">Unable to load image</string>
+    <string name="time">Time :</string>
+    <string name="date">Date :</string>
+    <string name="video_list_is_provided">Video List is Provided</string>
+    <string name="learn_now">Learn Now</string>
+
 </resources>
