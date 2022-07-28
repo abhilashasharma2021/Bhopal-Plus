@@ -67,16 +67,55 @@
                     android:layout_height="wrap_content">
 
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="@string/category"
+                        android:textColor="@color/darkblue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cd"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/tx"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
+
+
+                        <Spinner
+                            android:id="@+id/spCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.2"/>
+
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:id="@+id/ll"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/cd"
                         android:weightSum="2">
 
 
-                        <androidx.cardview.widget.CardView
+                        <com.google.android.material.card.MaterialCardView
                             android:layout_width="150dp"
                             app:cardElevation="5dp"
                             android:id="@+id/cdPic"
@@ -89,6 +128,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
+                                android:id="@+id/ivPhoto"
                                 android:layout_gravity="center"
                                 android:src="@drawable/photo">
 
@@ -96,10 +136,11 @@
                             </ImageView>
 
 
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
                             android:layout_width="150dp"
                             app:cardElevation="5dp"
+                            android:id="@+id/cdVideo"
                             android:layout_margin="10dp"
                             app:cardCornerRadius="10dp"
                             android:layout_height="150dp"
@@ -109,6 +150,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:padding="5dp"
+                                android:id="@+id/ivVideo"
                                 android:layout_gravity="center"
                                 android:src="@drawable/video">
 
@@ -116,7 +158,7 @@
                             </ImageView>
 
 
-                        </androidx.cardview.widget.CardView>
+                        </com.google.android.material.card.MaterialCardView>
 
 
                     </LinearLayout>
@@ -181,4 +223,11 @@
 
 
     </ScrollView>
+
+    <ProgressBar
+        android:layout_width="50dp"
+        android:visibility="gone"
+        android:id="@+id/dialog"
+        android:layout_centerInParent="true"
+        android:layout_height="50dp"/>
 </RelativeLayout>

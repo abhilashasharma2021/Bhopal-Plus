@@ -18,4 +18,6 @@ public class API {
      public static final String feedback = "create-feedback";
      public static final String teleconsultation = "teleconsultation";
      public static final String contact_psychlogist = "contact-psychlogist";
+     public static final String report_category = "report-category";
+     public static final String report_incident = "report-incident";
 }
