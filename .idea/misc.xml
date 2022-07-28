@@ -16,7 +16,7 @@
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/activity_services_details.xml" value="0.203125" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/activity_setting.xml" value="0.203125" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/activity_sign_up.xml" value="0.15" />
-        <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/activity_tele_consultation.xml" value="0.203125" />
+        <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/activity_tele_consultation.xml" value="0.25" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/activity_yoga_guide.xml" value="0.22" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/fragment_about_us.xml" value="0.203125" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/fragment_complaint.xml" value="0.203125" />
@@ -26,6 +26,8 @@
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/home_services_layout.xml" value="0.203125" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/image_slider_layout_item.xml" value="0.1890625" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/pr_dialog.xml" value="0.1890625" />
+        <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/row_contact_psychologist_layout.xml" value="0.203125" />
+        <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/row_tele_consultation_layout.xml" value="0.203125" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/layout/toast_layout.xml" value="0.203125" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/menu/bottom_menu_item.xml" value="0.203125" />
         <entry key="..\:/Users/aamir/AndroidStudioProjects/Bhopal-Plus-master (2)/Bhopal-Plus-master/Bhopal-Plus-master/app/src/main/res/xml/provider_paths.xml" value="0.18802083333333333" />

@@ -94,6 +94,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
+                        android:id="@+id/rlAvailabiltyVisible"
                         android:layout_height="wrap_content">
 
                         <View
@@ -128,11 +129,52 @@
 
                     </RelativeLayout>
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/rlAvailabiltyHide"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:id="@+id/v1"
+                            android:layout_width="75dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/darkblue" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tx1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_toEndOf="@+id/v1"
+                            android:text="@string/bhopal_covid_19_beds_availability"
+                            android:textColor="@color/darkblue"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="75dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_toEndOf="@+id/tx1"
+                            android:background="@color/darkblue" />
+
+                    </RelativeLayout>
+
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        android:id="@+id/llAvailability"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
@@ -421,7 +463,7 @@
                         android:layout_height="wrap_content">
 
                         <View
-                            android:id="@+id/v1"
+                            android:id="@+id/vv1"
                             android:layout_width="100dp"
                             android:layout_height="8dp"
                             android:layout_marginStart="15dp"
@@ -443,7 +485,7 @@
                             android:textStyle="bold" />
 
                         <View
-                            android:id="@+id/v2"
+                            android:id="@+id/v3"
                             android:layout_width="100dp"
                             android:layout_height="8dp"
                             android:layout_marginTop="15dp"

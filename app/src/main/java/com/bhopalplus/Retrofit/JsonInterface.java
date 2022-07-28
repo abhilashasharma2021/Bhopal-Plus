@@ -2,6 +2,7 @@ package com.bhopalplus.Retrofit;
 
 import com.bhopalplus.Model.AboutUsModel;
 import com.bhopalplus.Model.AddDetailsData;
+import com.bhopalplus.Model.ContactpsychlogistModel;
 import com.bhopalplus.Model.FeedbackModel;
 import com.bhopalplus.Model.HomeItemModel;
 import com.bhopalplus.Model.LoginData;
@@ -10,6 +11,7 @@ import com.bhopalplus.Model.ResendOtpData;
 import com.bhopalplus.Model.ShowProfileModel;
 import com.bhopalplus.Model.SignupData;
 import com.bhopalplus.Model.SliderModel;
+import com.bhopalplus.Model.TeleConsultationModel;
 import com.bhopalplus.Model.UpdateProfileModel;
 
 import java.util.Map;
@@ -80,4 +82,11 @@ public interface JsonInterface {
     Call<FeedbackModel> feedback(@Query("star") String star,@Query("feedback") String feedback,
             @Header("Authorization")String token);
 
+
+
+    @GET(API.teleconsultation)
+    Call<TeleConsultationModel> teleConsultation(@Header("Authorization")String token);
+
+    @GET(API.contact_psychlogist)
+    Call<ContactpsychlogistModel> contactpsychlogist(@Header("Authorization")String token);
 }

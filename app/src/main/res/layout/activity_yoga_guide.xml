@@ -208,11 +208,19 @@
 
 
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:id="@+id/rl"
+                    android:orientation="vertical"
                     android:layout_marginBottom="10dp"
                     android:layout_height="wrap_content">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/rlVisible"
+                        android:layout_height="wrap_content">
+
 
 
                     <com.google.android.material.textview.MaterialTextView
@@ -227,12 +235,12 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txList"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txLearn"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
-                        android:id="@+id/txList"
                         android:text="@string/video_list_is_provided"
                         android:textColor="@color/black"
                         android:textSize="12sp"
@@ -247,30 +255,86 @@
                         android:padding="10dp"
                         app:srcCompat="@drawable/down_arrow" />
 
+                    </RelativeLayout>
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_below="@+id/txList"
+                        android:id="@+id/rlHide"
+                        android:visibility="gone"
                         android:layout_height="wrap_content">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_height="55dp"
-                            android:layout_width="140dp"
-                            android:id="@+id/btLearn"
-                            android:backgroundTint="@color/lightblue"
-                            android:layout_marginTop="10dp"
-                            app:cornerRadius="50dp"
-                            android:textSize="14sp"
-                            android:textColor="@color/red"
-                            android:textAllCaps="false"
-                            android:layout_centerInParent="true"
-                            android:text="@string/learn_now"
-                            />
 
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txLearn1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/learn_yoga_by_yourself"
+                            android:textColor="@color/yellow"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txLearn1"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/video_list_is_provided"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_toEndOf="@+id/txLearn1"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/down_arrow" />
 
                     </RelativeLayout>
 
-                </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/rlNowVisible"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btLearnVisible"
+                            android:layout_width="140dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/lightblue"
+                            android:text="@string/learn_now"
+                            android:textAllCaps="false"
+                            android:textColor="@color/red"
+                            android:textSize="14sp"
+                            app:cornerRadius="50dp" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btLearnHide"
+                            android:layout_width="140dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="10dp"
+                            android:visibility="gone"
+                            android:backgroundTint="@color/lightblue"
+                            android:text="@string/learn_now"
+                            android:textAllCaps="false"
+                            android:textColor="@color/red"
+                            android:textSize="14sp"
+                            app:cornerRadius="50dp" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
 
 
 

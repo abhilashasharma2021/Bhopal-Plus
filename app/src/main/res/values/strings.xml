@@ -71,7 +71,8 @@
     <string name="unable_to_load_image">Unable to load image</string>
     <string name="time">Time :</string>
     <string name="date">Date :</string>
-    <string name="video_list_is_provided">Video List is Provided</string>
+    <string name="video_list_is_provided">Video List is Provided Click Here</string>
     <string name="learn_now">Learn Now</string>
+    <string name="learn_yoga_by_yourself">Learn Yoga By Yourself</string>
 
 </resources>

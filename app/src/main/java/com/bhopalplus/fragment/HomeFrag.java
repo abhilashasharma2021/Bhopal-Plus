@@ -95,6 +95,39 @@ public class HomeFrag extends Fragment {
             }
         });
 
+
+
+
+
+
+        binding.rlAvailabiltyVisible.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                binding.llAvailability.setVisibility(View.VISIBLE);
+                binding.rlAvailabiltyHide.setVisibility(View.VISIBLE);
+                binding.rlAvailabiltyVisible.setVisibility(View.GONE);
+
+
+            }
+        });
+        binding.rlAvailabiltyHide.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                binding.rlAvailabiltyVisible.setVisibility(View.VISIBLE);
+                binding.rlAvailabiltyHide.setVisibility(View.GONE);
+                binding.llAvailability.setVisibility(View.GONE);
+
+
+
+            }
+        });
+
+
         show_Bannner();
         show_Services();
         return view;

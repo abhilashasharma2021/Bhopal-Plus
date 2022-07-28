@@ -16,4 +16,6 @@ public class API {
      public static final String showBanner = "banner";
      public static final String aboutUS = "aboutus";
      public static final String feedback = "create-feedback";
+     public static final String teleconsultation = "teleconsultation";
+     public static final String contact_psychlogist = "contact-psychlogist";
 }
