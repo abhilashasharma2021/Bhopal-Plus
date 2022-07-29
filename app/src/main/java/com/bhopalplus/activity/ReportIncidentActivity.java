@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
 import com.bhopalplus.MainActivity;
 import com.bhopalplus.Model.CategoryModel;
+import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.Model.ReportIncidentModel;
 import com.bhopalplus.Model.TeleConsultationModel;
 import com.bhopalplus.Model.UpdateProfileModel;
@@ -59,12 +61,11 @@ import retrofit2.Response;
 
 public class ReportIncidentActivity extends AppCompatActivity {
     ActivityReportIncidentBinding binding;
-    String strCategory = "",getUserToken="",stType="";
+    String strCategory = "", getUserToken = "";
     ArrayList<String> catId, catName;
     private File gallery_file;
-    String frontp = "";
     String filePath = "";
-    String strDescription="";
+    String strDescription = "";
     ArrayList<File> fileList = new ArrayList<>();
 
     @Override
@@ -74,7 +75,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getUserToken = SharedHelper.getKey(ReportIncidentActivity.this, AppConstats.USER_TOKEN);
 
-        Log.e("kdjclkdkj", "onCreate: "+getUserToken );
+        Log.e("kdjclkdkj", "onCreate: " + getUserToken);
 
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
@@ -86,20 +87,14 @@ public class ReportIncidentActivity extends AppCompatActivity {
             }
         });
 
-        binding.btSent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                strDescription = binding.etDescription.getText().toString().trim();
-                check(strDescription);
 
-            }
-        });
         binding.spCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 strCategory = catId.get(i);
-
+/*  ((TextView) adapterView.getChildAt(0)).setTextColor(Color.BLACK);
+                ((TextView) adapterView.getChildAt(0)).setTextSize(12);*/
             }
 
             @Override
@@ -108,10 +103,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
             }
         });
 
-      /*  binding.cdPic.setOnClickListener(new View.OnClickListener() {
+        binding.cdPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              RxMediaPicker.builder(ReportIncidentActivity.this)
+                RxMediaPicker.builder(ReportIncidentActivity.this)
                         .pick(Purpose.Pick.IMAGE)
                         .take(Purpose.Take.PHOTO)
                         .build()
@@ -119,29 +114,37 @@ public class ReportIncidentActivity extends AppCompatActivity {
                             Bitmap bitmap = ImageUtils.imageCompress(ImageUtils.getRealPath(ReportIncidentActivity.this, filepath));
                             gallery_file = ImageUtils.bitmapToFile(bitmap, ReportIncidentActivity.this);
                             Glide.with(ReportIncidentActivity.this).load(gallery_file).into(binding.ivPhoto);
-                            frontp = gallery_file.toString();
+                            filePath = gallery_file.toString();
 
                             binding.btSent.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     strDescription = binding.etDescription.getText().toString().trim();
-                                   uploadFiles("1",strCategory ,strDescription);
+
+                                    if (TextUtils.isEmpty(strDescription)) {
+                                        binding.etDescription.setError("Incident Must Required!");
+                                        binding.etDescription.requestFocus();
+                                    } else if (strCategory.isEmpty()){
+                                        Toast.makeText(ReportIncidentActivity.this, "Please choose requires category", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        uploadFiles("1", strCategory, strDescription);
+                                    }
+
                                 }
                             });
-
 
 
                         });
 
 
             }
-        });*/
+        });
 
-   /*     binding.cdVideo.setOnClickListener(new View.OnClickListener() {
+        binding.cdVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-             Log.e("TAG", "onClick: ");
+                Log.e("TAG", "onClick: ");
                 Intent intent = new Intent(ReportIncidentActivity.this, FilePickerActivity.class);
                 intent.putExtra(FilePickerActivity.CONFIGS, new Configurations.Builder()
                         .setCheckPermission(true)
@@ -154,13 +157,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 startActivityForResult(intent, FILE_VIDEO_REQUEST_CODE);
 
 
-
-
-
             }
         });
-
-*/
 
 
         showCategory();
@@ -173,7 +171,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
         call.enqueue(new Callback<CategoryModel>() {
             @Override
             public void onResponse(@NonNull Call<CategoryModel> call, @NonNull Response<CategoryModel> response) {
-                Log.e("djchdhch", "onResponse: "+response );
+                Log.e("djchdhch", "onResponse: " + response);
 
                 if (!response.isSuccessful()) {
 
@@ -210,7 +208,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<CategoryModel> call, @NonNull Throwable t) {
-                Log.e("shdjshh", "onFailure: "+t.getMessage() );
+                Log.e("shdjshh", "onFailure: " + t.getMessage());
             }
         });
     }
@@ -224,7 +222,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
         if (requestCode == FILE_VIDEO_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             List<MediaFile> mediaFiles = data.getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES);
-            Log.e("fdnhfgnjfgn", mediaFiles+"");
+            Log.e("fdnhfgnjfgn", mediaFiles + "");
 
             if (mediaFiles != null) {
 
@@ -243,12 +241,21 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
                 }
 
-                if (fileList.size()>0){
+                if (fileList.size() > 0) {
                     binding.btSent.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             strDescription = binding.etDescription.getText().toString().trim();
-                            uploadFiles("2",strCategory ,strDescription);
+                            if (TextUtils.isEmpty(strDescription)) {
+                                binding.etDescription.setError("Incident Must Required!");
+                                binding.etDescription.requestFocus();
+                            } else if (strCategory.isEmpty()){
+                                Toast.makeText(ReportIncidentActivity.this, "Please choose requires category!", Toast.LENGTH_SHORT).show();
+                            }else {
+                                uploadFiles("2", strCategory, strDescription);
+                            }
+
 
                         }
                     });
@@ -257,16 +264,55 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 }
 
 
-
             }
         }
-
 
 
     }
 
 
-    private void uploadFiles(String stType, String strCategory, String strDescription){
+    private void uploadFiles(String stType, String strCategory, String strDescription) {
+
+
+        File file = new File(filePath);
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+
+
+        Call<ReportIncidentModel> call = APIClient.getAPIClient().reportIncident(stType, strCategory, strDescription, body, "Bearer " + getUserToken);
+        call.enqueue(new Callback<ReportIncidentModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ReportIncidentModel> call, @NonNull Response<ReportIncidentModel> response) {
+                Log.e("regregrtg", response.toString());
+
+                ReportIncidentModel incidentModel = response.body();
+                if (incidentModel.getMessage().equals("something wrong please fill again")) {
+                    Toast.makeText(ReportIncidentActivity.this, incidentModel.getMessage(), Toast.LENGTH_LONG).show();
+
+                } else {
+                    startActivity(new Intent(ReportIncidentActivity.this, ReportIncidentActivity.class));
+                    Toast.makeText(ReportIncidentActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ReportIncidentModel> call, @NonNull Throwable t) {
+                Log.e("frgfdgfd", t.getMessage(), t);
+            }
+        });
+    }
+
+
+
+
+
+
+    /*private void uploadFiles(String stType, String strCategory, String strDescription){
 
 
         Log.e("dshjd", "gallery_file: "+ gallery_file);
@@ -281,7 +327,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 .addMultipartParameter("type", stType)
                 .addMultipartParameter("category", strCategory)
                 .addMultipartParameter("description", strDescription)
-                .addHeaders("Authorization",getUserToken)
+                .addHeaders("Authorization","Bearer "+ getUserToken)
                 .setTag("addPost")
                 .setPriority(Priority.HIGH)
                 .build()
@@ -290,7 +336,24 @@ public class ReportIncidentActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         Log.e("checkffff", "onResponse: "+response.toString() );
+                        try {
+                            if (response.getString("result").equals("true")) {
 
+                                startActivity(new Intent(ReportIncidentActivity.this, OtpVerifyActivity.class));
+                            }
+                            else {
+
+
+                                Toast.makeText(ReportIncidentActivity.this, response.getString("message"), Toast.LENGTH_LONG).show();
+
+                            }
+
+
+                        }
+                        catch (JSONException e) {
+                            Log.e("gfggggfg", "onResponse: " + e.getMessage());
+
+                        }
                     }
 
                     @Override
@@ -299,51 +362,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
                     }
                 });
 
-    }
-  private  void check(String strDescription){
-
-      AndroidNetworking.post("http://128.199.176.121/bhopalplusbnest/api/report-incident")
-              .addBodyParameter("description", strDescription)
-              .addHeaders("Authorization","Bearer "+ getUserToken)
-              .setPriority(Priority.HIGH)
-              .setTag("test")
-              .build()
-              .getAsJSONObject(new JSONObjectRequestListener() {
-                  @Override
-                  public void onResponse(JSONObject response) {
-                      Log.e("dsgdfgdf", "response: " + response);
-
-                      try {
-                          if (response.getString("result").equals("true")) {
-
-                              startActivity(new Intent(ReportIncidentActivity.this, OtpVerifyActivity.class));
-                          }
-                          else {
-
-
-                              Toast.makeText(ReportIncidentActivity.this, response.getString("message"), Toast.LENGTH_LONG).show();
-
-                          }
-
-
-                      }
-                      catch (JSONException e) {
-                          Log.e("gfggggfg", "onResponse: " + e.getMessage());
-
-                      }
-                  }
-
-                  @Override
-                  public void onError(ANError anError) {
-                      Log.e("gfrghtrhtrgh", "onError: " + anError.getMessage());
-
-
-                  }
-              });
-
-
-  }
-  }
+    }*/
+}
 
 
 

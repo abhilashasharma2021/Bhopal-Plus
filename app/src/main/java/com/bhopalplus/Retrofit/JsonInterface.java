@@ -6,6 +6,7 @@ import com.bhopalplus.Model.CategoryModel;
 import com.bhopalplus.Model.ContactpsychlogistModel;
 import com.bhopalplus.Model.FeedbackModel;
 import com.bhopalplus.Model.HomeItemModel;
+import com.bhopalplus.Model.IsolationGuidelineModel;
 import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.Model.OtpVerifyData;
 import com.bhopalplus.Model.ReportIncidentModel;
@@ -15,6 +16,7 @@ import com.bhopalplus.Model.SignupData;
 import com.bhopalplus.Model.SliderModel;
 import com.bhopalplus.Model.TeleConsultationModel;
 import com.bhopalplus.Model.UpdateProfileModel;
+import com.bhopalplus.Model.YogaGuideModel;
 
 import java.io.File;
 import java.util.Map;
@@ -29,6 +31,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -99,13 +102,29 @@ public interface JsonInterface {
     Call<CategoryModel> showCategory(@Header("Authorization")String token);
 
 
-
+    @Multipart
     @POST(API.report_incident)
     Call<ReportIncidentModel>reportIncident(@Query("type") String type,
                                             @Query("category") String  category, @Query("description") String description,
-                                            @Part("image") RequestBody photo,
+                                            @Part MultipartBody.Part image,
                                             @Header("Authorization") String token);
 
 
+
+
+    @GET(API.yoga_guide)
+    Call<YogaGuideModel> showYogaGuide(@Header("Authorization")String token);
+
+
+    @GET(API.fever_clinic)
+    Call<TeleConsultationModel> showFeverClinic(@Header("Authorization")String token);
+
+
+    @GET(API.food)
+    Call<TeleConsultationModel> showFood(@Header("Authorization")String token);
+
+
+    @GET(API.isolation_suidelines)
+    Call<IsolationGuidelineModel> showGuideline(@Header("Authorization")String token);
 
 }

@@ -75,5 +75,9 @@
     <string name="learn_now">Learn Now</string>
     <string name="learn_yoga_by_yourself">Learn Yoga By Yourself</string>
     <string name="category">Category</string>
+    <string name="fever_clinic">Fever Clinic</string>
+    <string name="bhopal_smart_city">Bhopal Smart City</string>
+    <string name="food">Food</string>
+    <string name="isolation_guidelines">Isolation Guidelines</string>
 
 </resources>

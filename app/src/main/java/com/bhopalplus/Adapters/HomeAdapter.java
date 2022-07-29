@@ -18,6 +18,8 @@ import com.bhopalplus.Data.HomeItemData;
 import com.bhopalplus.Model.HomeItemModel;
 import com.bhopalplus.R;
 import com.bhopalplus.activity.ContactPsychologistActivity;
+import com.bhopalplus.activity.FeverClinicActivity;
+import com.bhopalplus.activity.FoodActivity;
 import com.bhopalplus.activity.ReportIncidentActivity;
 import com.bhopalplus.activity.TeleConsultation;
 import com.bhopalplus.activity.YogaGuideActivity;
@@ -96,7 +98,27 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                         context.startActivity(new Intent(context, ContactPsychologistActivity.class));
                     }
                 });
-            } else {
+            }
+            else if (servicesList.get(position).getServiceName().equals("Fever Clinic")) {
+
+                holder.llView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, FeverClinicActivity.class));
+                    }
+                });
+            }
+
+            else if (servicesList.get(position).getServiceName().equals("Food")) {
+
+                holder.llView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, FoodActivity.class));
+                    }
+                });
+            }
+            else {
 
             }
 

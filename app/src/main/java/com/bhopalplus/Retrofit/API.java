@@ -17,7 +17,11 @@ public class API {
      public static final String aboutUS = "aboutus";
      public static final String feedback = "create-feedback";
      public static final String teleconsultation = "teleconsultation";
+     public static final String fever_clinic = "fever-clinic";
+     public static final String food = "food";
      public static final String contact_psychlogist = "contact-psychlogist";
      public static final String report_category = "report-category";
      public static final String report_incident = "report-incident";
+     public static final String yoga_guide = "yoga-guide";
+     public static final String isolation_suidelines = "isolation-suidelines";
 }
