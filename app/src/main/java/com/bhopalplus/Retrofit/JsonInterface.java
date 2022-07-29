@@ -125,6 +125,6 @@ public interface JsonInterface {
 
 
     @GET(API.isolation_suidelines)
-    Call<IsolationGuidelineModel> showGuideline(@Header("Authorization")String token);
+    Call< IsolationGuidelineModel.Datum> showGuideline(@Header("Authorization")String token);
 
 }

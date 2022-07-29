@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class IsolationGuidelineActivity extends AppCompatActivity {
 ActivityIsolationGuidelineBinding binding;
 String getUserToken="";
-List<IsolationGuidelineModel>guidelineModelList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,47 +49,33 @@ List<IsolationGuidelineModel>guidelineModelList;
             }
         });
 
-        show_Guideline();
+       //show_Guideline();
     }
 
     private void show_Guideline(){
 
-        Call<IsolationGuidelineModel> call = APIClient.getAPIClient().showGuideline("Bearer " + getUserToken);
-        call.enqueue(new Callback<IsolationGuidelineModel>() {
+        Call< IsolationGuidelineModel.Datum> call = APIClient.getAPIClient().showGuideline("Bearer " + getUserToken);
+        call.enqueue(new Callback< IsolationGuidelineModel.Datum>() {
             @Override
-            public void onResponse(@NonNull Call<IsolationGuidelineModel> call, @NonNull Response<IsolationGuidelineModel> response) {
-                Log.e("vegdvgv", response.toString());
+            public void onResponse(@NonNull Call< IsolationGuidelineModel.Datum> call, @NonNull Response< IsolationGuidelineModel.Datum> response) {
+                Log.e("grgtrgtg", response.toString());
                 if (!response.isSuccessful()) {
                     Toast.makeText(IsolationGuidelineActivity.this, response.message(), Toast.LENGTH_SHORT).show();
 
                 }
-
-                IsolationGuidelineModel guidelineData = response.body();
-                if (guidelineData != null) {
-                    if (guidelineData.getResult()) {
-                        guidelineModelList=new ArrayList<>();
-                        for (int i = 0; i <guidelineModelList.size() ; i++) {
-
-                            binding.txGuideline.setText(Html.fromHtml(Html.fromHtml(guidelineData.getData().get(i).getDescription()).toString()));
-
-                        }
-
-
-
-
-
-
-
-                    } else {
-                        Toast.makeText(IsolationGuidelineActivity.this, guidelineData.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                else {
+                    IsolationGuidelineModel.Datum model = response.body();
+                    binding.txGuideline.setText(Html.fromHtml(Html.fromHtml(model.getDescription()).toString()));
                 }
+
+
+
 
             }
 
             @Override
-            public void onFailure(@NonNull Call<IsolationGuidelineModel> call, @NonNull Throwable t) {
-                Log.e("gtrggt", t.getMessage(), t);
+            public void onFailure(@NonNull Call< IsolationGuidelineModel.Datum> call, @NonNull Throwable t) {
+                Log.e("dgfdgfdg", t.getMessage(), t);
             }
         });
 

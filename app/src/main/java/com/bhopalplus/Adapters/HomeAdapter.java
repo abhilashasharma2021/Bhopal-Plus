@@ -20,6 +20,7 @@ import com.bhopalplus.R;
 import com.bhopalplus.activity.ContactPsychologistActivity;
 import com.bhopalplus.activity.FeverClinicActivity;
 import com.bhopalplus.activity.FoodActivity;
+import com.bhopalplus.activity.IsolationGuidelineActivity;
 import com.bhopalplus.activity.ReportIncidentActivity;
 import com.bhopalplus.activity.TeleConsultation;
 import com.bhopalplus.activity.YogaGuideActivity;
@@ -115,6 +116,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                     @Override
                     public void onClick(View view) {
                         context.startActivity(new Intent(context, FoodActivity.class));
+                    }
+                });
+            }
+            else if (servicesList.get(position).getServiceName().equals("Isolation Guidelanes")) {
+
+                holder.llView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, IsolationGuidelineActivity.class));
                     }
                 });
             }
