@@ -24,4 +24,7 @@ public class API {
      public static final String report_incident = "report-incident";
      public static final String yoga_guide = "yoga-guide";
      public static final String isolation_suidelines = "isolation-suidelines";
+     public static final String vacination_center = "vacination-center";
+     public static final String mayor_express = "mayor-express";
+     public static final String post_covid_diet = "post-covid-diet";
 }

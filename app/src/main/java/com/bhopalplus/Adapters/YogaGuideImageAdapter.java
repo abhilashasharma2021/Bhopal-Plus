@@ -1,21 +1,14 @@
 package com.bhopalplus.Adapters;
 
 import android.content.Context;
-
 import android.util.Log;
 import android.view.LayoutInflater;
-
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.bhopalplus.Data.YogaGuideImageData;
-
 import com.bhopalplus.databinding.RowYogaGuideImageLayoutBinding;
 import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 public class YogaGuideImageAdapter extends RecyclerView.Adapter<YogaGuideImageAdapter.MyViewHolder> {

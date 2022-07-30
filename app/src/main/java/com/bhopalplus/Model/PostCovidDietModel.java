@@ -3,9 +3,7 @@ package com.bhopalplus.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class IsolationGuidelineModel {
+public class PostCovidDietModel {
     @SerializedName("result")
     @Expose
     private Boolean result;
@@ -45,9 +43,15 @@ public class IsolationGuidelineModel {
         @SerializedName("id")
         @Expose
         private Integer id;
-        @SerializedName("description")
+        @SerializedName("title")
         @Expose
-        private String description;
+        private String title;
+        @SerializedName("image")
+        @Expose
+        private String image;
+        @SerializedName("path")
+        @Expose
+        private String path;
         @SerializedName("status")
         @Expose
         private Integer status;
@@ -60,12 +64,28 @@ public class IsolationGuidelineModel {
             this.id = id;
         }
 
-        public String getDescription() {
-            return description;
+        public String getTitle() {
+            return title;
         }
 
-        public void setDescription(String description) {
-            this.description = description;
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public void setPath(String path) {
+            this.path = path;
         }
 
         public Integer getStatus() {
@@ -76,4 +96,4 @@ public class IsolationGuidelineModel {
             this.status = status;
         }
     }
-    }
+}

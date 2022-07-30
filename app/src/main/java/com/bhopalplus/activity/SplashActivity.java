@@ -1,33 +1,17 @@
 package com.bhopalplus.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-
-
-import android.text.Html;
-import android.util.Log;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bhopalplus.MainActivity;
 import com.bhopalplus.R;
 import com.bhopalplus.utils.AppConstats;
-import com.bhopalplus.utils.Constants;
-import com.bhopalplus.utils.GpsUtils;
 import com.bhopalplus.utils.SharedHelper;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.normal.TedPermission;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -35,7 +19,6 @@ import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-
 import java.util.List;
 
 

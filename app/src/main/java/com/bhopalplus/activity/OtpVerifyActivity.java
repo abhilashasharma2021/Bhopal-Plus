@@ -2,15 +2,12 @@ package com.bhopalplus.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import com.bhopalplus.MainActivity;
 import com.bhopalplus.Model.OtpVerifyData;
 import com.bhopalplus.Model.ResendOtpData;
 import com.bhopalplus.Retrofit.APIClient;
@@ -20,10 +17,8 @@ import com.bhopalplus.utils.InternetConnection.InternetConnectionInterface;
 import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
 import com.bhopalplus.utils.ReturnErrorToast;
 import com.bhopalplus.utils.SharedHelper;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

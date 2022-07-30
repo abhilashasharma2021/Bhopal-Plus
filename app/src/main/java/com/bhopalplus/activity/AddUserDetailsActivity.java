@@ -2,21 +2,12 @@ package com.bhopalplus.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bhopalplus.Model.AddDetailsData;
 import com.bhopalplus.MainActivity;
 import com.bhopalplus.Retrofit.APIClient;
@@ -24,26 +15,14 @@ import com.bhopalplus.databinding.ActivityAddUserDetailsBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.InternetConnection.InternetConnectionInterface;
 import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
-import com.bhopalplus.utils.ReturnErrorToast;
 import com.bhopalplus.utils.SharedHelper;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

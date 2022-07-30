@@ -5,8 +5,6 @@ import static com.bhopalplus.fragment.ComplaintFragment.FILE_VIDEO_REQUEST_CODE;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
@@ -18,38 +16,21 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
-
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.androidnetworking.interfaces.UploadProgressListener;
 import com.bhopalplus.MainActivity;
 import com.bhopalplus.Model.CategoryModel;
-import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.Model.ReportIncidentModel;
-import com.bhopalplus.Model.TeleConsultationModel;
-import com.bhopalplus.Model.UpdateProfileModel;
-import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
 import com.bhopalplus.databinding.ActivityReportIncidentBinding;
-import com.bhopalplus.databinding.ActivityTeleConsultationBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.ImageUtils;
-import com.bhopalplus.utils.ReturnErrorToast;
 import com.bhopalplus.utils.SharedHelper;
 import com.bumptech.glide.Glide;
 import com.jaiselrahman.filepicker.activity.FilePickerActivity;
 import com.jaiselrahman.filepicker.config.Configurations;
 import com.jaiselrahman.filepicker.model.MediaFile;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import iam.thevoid.mediapicker.rxmediapicker.Purpose;
 import iam.thevoid.mediapicker.rxmediapicker.RxMediaPicker;
 import okhttp3.MediaType;

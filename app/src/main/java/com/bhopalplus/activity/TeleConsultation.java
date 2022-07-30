@@ -1,39 +1,26 @@
 package com.bhopalplus.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import com.bhopalplus.Adapters.HomeAdapter;
 import com.bhopalplus.Adapters.TeleAdapter;
-import com.bhopalplus.Data.HomeItemData;
 import com.bhopalplus.Data.TeleConsultationData;
 import com.bhopalplus.MainActivity;
-import com.bhopalplus.Model.HomeItemModel;
-import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.Model.TeleConsultationModel;
 import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
-import com.bhopalplus.databinding.ActivitySignUpBinding;
 import com.bhopalplus.databinding.ActivityTeleConsultationBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.MyDialog.CustomDialog;
 import com.bhopalplus.utils.MyDialog.DialogInterface;
 import com.bhopalplus.utils.SharedHelper;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".activity.FeverClinicActivity">
+    tools:context=".activity.PostCovidDietActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,7 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/fever_clinic"
+                        android:text="@string/post_covid_diet"
                         android:textColor="@color/darkblue"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -52,21 +52,39 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
+
+
             </RelativeLayout>
 
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
 
-              <androidx.recyclerview.widget.RecyclerView
-                  android:id="@+id/rvClinic"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+                <com.jsibbold.zoomage.ZoomageView
+                    android:id="@+id/myZoomageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/images"
+                    app:zoomage_restrictBounds="false"
+                    app:zoomage_animateOnReset="true"
+                    app:zoomage_autoResetMode="UNDER"
+                    app:zoomage_autoCenter="true"
+                    app:zoomage_zoomable="true"
+                    app:zoomage_translatable="true"
+                    app:zoomage_minScale="0.6"
+                    app:zoomage_maxScale="8"
+                    zoomage_doubleTapToZoom="true|false"
+                    />
 
-              </androidx.recyclerview.widget.RecyclerView>
 
-          </RelativeLayout>
 
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </ScrollView>

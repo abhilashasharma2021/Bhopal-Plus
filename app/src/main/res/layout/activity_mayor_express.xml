@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".activity.FeverClinicActivity">
+    tools:context=".activity.MayorExpressActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,7 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/fever_clinic"
+                        android:text="@string/mayor_express"
                         android:textColor="@color/darkblue"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -52,20 +52,20 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
+
+
             </RelativeLayout>
 
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txGuideline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textColor="@color/darkblue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-              <androidx.recyclerview.widget.RecyclerView
-                  android:id="@+id/rvClinic"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
-
-              </androidx.recyclerview.widget.RecyclerView>
-
-          </RelativeLayout>
 
 
         </LinearLayout>

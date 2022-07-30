@@ -3,13 +3,11 @@ package com.bhopalplus.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.bhopalplus.Adapters.TeleAdapter;
 import com.bhopalplus.Data.TeleConsultationData;
 import com.bhopalplus.MainActivity;
@@ -21,10 +19,8 @@ import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.MyDialog.CustomDialog;
 import com.bhopalplus.utils.MyDialog.DialogInterface;
 import com.bhopalplus.utils.SharedHelper;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

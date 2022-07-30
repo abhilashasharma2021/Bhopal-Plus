@@ -1,18 +1,14 @@
 package com.bhopalplus.Adapters;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.bhopalplus.Data.SliderItemData;
-import com.bhopalplus.Model.SliderModel;
 import com.bhopalplus.R;
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
-
 import java.util.List;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {

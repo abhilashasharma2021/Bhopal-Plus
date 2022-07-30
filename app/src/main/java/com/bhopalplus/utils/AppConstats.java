@@ -10,4 +10,5 @@ public class AppConstats {
     public static final String USER_GENDER = "USER_GENDER";
     public static final String USER_TOKEN = "USER_TOKEN";
     public static final String GetOtp = "GetOtp";
+    public static final String SIGNIN_URL = "SIGNIN_URL";
 }

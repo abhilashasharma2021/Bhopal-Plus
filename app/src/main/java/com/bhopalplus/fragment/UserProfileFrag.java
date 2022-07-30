@@ -3,44 +3,28 @@ package com.bhopalplus.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
-import com.androidnetworking.error.ANError;
 import com.bhopalplus.MainActivity;
-import com.bhopalplus.Model.AddDetailsData;
-import com.bhopalplus.Model.HomeItemModel;
-import com.bhopalplus.Model.LoginData;
 import com.bhopalplus.Model.ShowProfileModel;
 import com.bhopalplus.Model.UpdateProfileModel;
-import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
-import com.bhopalplus.activity.AddUserDetailsActivity;
-import com.bhopalplus.activity.LoginActivity;
 import com.bhopalplus.databinding.FragmentUserProfileBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.InternetConnection.InternetConnectionInterface;
 import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
 import com.bhopalplus.utils.SharedHelper;
-
-import org.json.JSONException;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

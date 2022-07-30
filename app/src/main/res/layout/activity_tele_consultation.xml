@@ -53,14 +53,17 @@
 
             </RelativeLayout>
 
-
+            <RelativeLayout
+                android:id="@+id/rel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTele"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
-
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

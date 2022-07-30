@@ -2,45 +2,30 @@ package com.bhopalplus.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
-
-import com.bhopalplus.Adapters.HomeAdapter;
-import com.bhopalplus.Adapters.TeleAdapter;
 import com.bhopalplus.Adapters.YogaGuideImageAdapter;
 import com.bhopalplus.Adapters.YogaGuideVideoAdapter;
-import com.bhopalplus.Data.HomeItemData;
-import com.bhopalplus.Data.TeleConsultationData;
 import com.bhopalplus.Data.YogaGuideImageData;
 import com.bhopalplus.MainActivity;
-import com.bhopalplus.Model.HomeItemModel;
-import com.bhopalplus.Model.ShowProfileModel;
-import com.bhopalplus.Model.TeleConsultationModel;
 import com.bhopalplus.Model.YogaGuideModel;
 import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
-import com.bhopalplus.databinding.ActivityLoginBinding;
 import com.bhopalplus.databinding.ActivityYogaGuideBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.MyDialog.CustomDialog;
 import com.bhopalplus.utils.MyDialog.DialogInterface;
 import com.bhopalplus.utils.SharedHelper;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

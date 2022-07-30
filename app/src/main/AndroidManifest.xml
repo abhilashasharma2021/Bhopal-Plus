@@ -29,6 +29,18 @@
         android:theme="@style/Theme.BhopalPlus"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.PostCovidDietActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MayorExpressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.WebviewSignInVaccinationCenterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.VaccinationCenterActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.IsolationGuidelineActivity"
             android:exported="false" />
         <activity

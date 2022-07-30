@@ -8,7 +8,9 @@ import com.bhopalplus.Model.FeedbackModel;
 import com.bhopalplus.Model.HomeItemModel;
 import com.bhopalplus.Model.IsolationGuidelineModel;
 import com.bhopalplus.Model.LoginData;
+import com.bhopalplus.Model.MayorExpressModel;
 import com.bhopalplus.Model.OtpVerifyData;
+import com.bhopalplus.Model.PostCovidDietModel;
 import com.bhopalplus.Model.ReportIncidentModel;
 import com.bhopalplus.Model.ResendOtpData;
 import com.bhopalplus.Model.ShowProfileModel;
@@ -16,6 +18,7 @@ import com.bhopalplus.Model.SignupData;
 import com.bhopalplus.Model.SliderModel;
 import com.bhopalplus.Model.TeleConsultationModel;
 import com.bhopalplus.Model.UpdateProfileModel;
+import com.bhopalplus.Model.VaccinationCenterModel;
 import com.bhopalplus.Model.YogaGuideModel;
 
 import java.io.File;
@@ -125,6 +128,17 @@ public interface JsonInterface {
 
 
     @GET(API.isolation_suidelines)
-    Call< IsolationGuidelineModel.Datum> showGuideline(@Header("Authorization")String token);
+    Call< IsolationGuidelineModel> showGuideline(@Header("Authorization")String token);
+
+
+    @GET(API.vacination_center)
+    Call<VaccinationCenterModel> showVaccinationCenter(@Header("Authorization")String token);
+
+
+    @GET(API.mayor_express)
+    Call<MayorExpressModel> showMayor(@Header("Authorization")String token);
+
+    @GET(API.post_covid_diet)
+    Call<PostCovidDietModel> showDiet(@Header("Authorization")String token);
 
 }

@@ -1,20 +1,14 @@
 package com.bhopalplus.Adapters;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bhopalplus.Data.ContactPsychologistData;
-import com.bhopalplus.Data.TeleConsultationData;
 import com.bhopalplus.databinding.RowContactPsychologistLayoutBinding;
-import com.bhopalplus.databinding.RowTeleConsultationLayoutBinding;
-
 import java.util.List;
 
 public class PsychologistAdapter extends RecyclerView.Adapter<PsychologistAdapter.MyViewHolder> {

@@ -3,18 +3,13 @@ package com.bhopalplus.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
 import android.widget.Toast;
-
 import com.bhopalplus.MainActivity;
-import com.bhopalplus.Model.AboutUsModel;
 import com.bhopalplus.Model.FeedbackModel;
 import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
@@ -23,7 +18,6 @@ import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.InternetConnection.InternetConnectionInterface;
 import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
 import com.bhopalplus.utils.SharedHelper;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

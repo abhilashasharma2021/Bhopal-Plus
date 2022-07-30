@@ -8,27 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bhopalplus.Data.HomeItemData;
-import com.bhopalplus.Model.HomeItemModel;
 import com.bhopalplus.R;
 import com.bhopalplus.activity.ContactPsychologistActivity;
 import com.bhopalplus.activity.FeverClinicActivity;
 import com.bhopalplus.activity.FoodActivity;
 import com.bhopalplus.activity.IsolationGuidelineActivity;
+import com.bhopalplus.activity.MayorExpressActivity;
+import com.bhopalplus.activity.PostCovidDietActivity;
 import com.bhopalplus.activity.ReportIncidentActivity;
 import com.bhopalplus.activity.TeleConsultation;
+import com.bhopalplus.activity.VaccinationCenterActivity;
 import com.bhopalplus.activity.YogaGuideActivity;
-import com.bhopalplus.utils.AppConstats;
-import com.bhopalplus.utils.SharedHelper;
 import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
@@ -128,6 +123,36 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                     }
                 });
             }
+
+            else if (servicesList.get(position).getServiceName().equals("Vacination Center")) {
+
+                holder.llView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, VaccinationCenterActivity.class));
+                    }
+                });
+            }
+
+            else if (servicesList.get(position).getServiceName().equals("Mayor Express")) {
+
+                holder.llView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, MayorExpressActivity.class));
+                    }
+                });
+            }
+            else if (servicesList.get(position).getServiceName().equals("Post Covid Diet")) {
+
+                holder.llView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        context.startActivity(new Intent(context, PostCovidDietActivity.class));
+                    }
+                });
+            }
+
             else {
 
             }

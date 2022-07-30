@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,20 +18,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.bhopalplus.Adapters.HomeAdapter;
 import com.bhopalplus.Adapters.SliderAdapter;
 import com.bhopalplus.Data.HomeItemData;
 import com.bhopalplus.Data.SliderItemData;
 import com.bhopalplus.Model.HomeItemModel;
 import com.bhopalplus.MainActivity;
-
 import com.bhopalplus.Model.SliderModel;
 import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
 import com.bhopalplus.databinding.FragmentHomeBinding;
-
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.MyDialog.CustomDialog;
 import com.bhopalplus.utils.MyDialog.DialogInterface;
@@ -41,10 +35,8 @@ import com.bhopalplus.utils.SharedHelper;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -3,7 +3,6 @@ package com.bhopalplus.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
 public class AboutUsModel {
     @SerializedName("result")

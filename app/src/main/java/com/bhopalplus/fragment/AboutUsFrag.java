@@ -3,30 +3,20 @@ package com.bhopalplus.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.bhopalplus.MainActivity;
 import com.bhopalplus.Model.AboutUsModel;
-import com.bhopalplus.Model.AddDetailsData;
-import com.bhopalplus.Model.LoginData;
-import com.bhopalplus.Model.ShowProfileModel;
-import com.bhopalplus.R;
 import com.bhopalplus.Retrofit.APIClient;
-import com.bhopalplus.activity.LoginActivity;
 import com.bhopalplus.databinding.FragmentAboutUsBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.InternetConnection.InternetConnectionInterface;
 import com.bhopalplus.utils.InternetConnection.InternetConnectivity;
 import com.bhopalplus.utils.SharedHelper;
-import com.google.android.gms.common.api.Api;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -3,9 +3,7 @@ package com.bhopalplus.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class IsolationGuidelineModel {
+public class MayorExpressModel {
     @SerializedName("result")
     @Expose
     private Boolean result;
@@ -39,7 +37,6 @@ public class IsolationGuidelineModel {
     public void setData(Data data) {
         this.data = data;
     }
-
     public class Data {
 
         @SerializedName("id")
@@ -76,4 +73,4 @@ public class IsolationGuidelineModel {
             this.status = status;
         }
     }
-    }
+}

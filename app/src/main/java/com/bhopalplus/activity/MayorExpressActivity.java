@@ -9,50 +9,50 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.bhopalplus.MainActivity;
-import com.bhopalplus.Model.IsolationGuidelineModel;
+import com.bhopalplus.Model.MayorExpressModel;
 import com.bhopalplus.Retrofit.APIClient;
-import com.bhopalplus.databinding.ActivityIsolationGuidelineBinding;
+import com.bhopalplus.databinding.ActivityMayorExpressBinding;
 import com.bhopalplus.utils.AppConstats;
 import com.bhopalplus.utils.SharedHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class IsolationGuidelineActivity extends AppCompatActivity {
-ActivityIsolationGuidelineBinding binding;
-String getUserToken="";
-
+public class MayorExpressActivity extends AppCompatActivity {
+    ActivityMayorExpressBinding binding;
+    String getUserToken="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= ActivityIsolationGuidelineBinding.inflate(getLayoutInflater());
+        binding= ActivityMayorExpressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getUserToken = SharedHelper.getKey(IsolationGuidelineActivity.this, AppConstats.USER_TOKEN);
+        getUserToken = SharedHelper.getKey(MayorExpressActivity.this, AppConstats.USER_TOKEN);
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(IsolationGuidelineActivity.this, MainActivity.class));
+                startActivity(new Intent(MayorExpressActivity.this, MainActivity.class));
                 finish();
 
             }
         });
+        show_Guideline();
 
-       show_Guideline();
     }
+
 
     private void show_Guideline(){
 
-        Call< IsolationGuidelineModel> call = APIClient.getAPIClient().showGuideline("Bearer " + getUserToken);
-        call.enqueue(new Callback< IsolationGuidelineModel>() {
+        Call<MayorExpressModel> call = APIClient.getAPIClient().showMayor("Bearer " + getUserToken);
+        call.enqueue(new Callback< MayorExpressModel>() {
             @Override
-            public void onResponse(@NonNull Call< IsolationGuidelineModel> call, @NonNull Response< IsolationGuidelineModel> response) {
+            public void onResponse(@NonNull Call< MayorExpressModel> call, @NonNull Response< MayorExpressModel> response) {
                 Log.e("grgtrgtg", response.toString());
                 if (!response.isSuccessful()) {
-                    Toast.makeText(IsolationGuidelineActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MayorExpressActivity.this, response.message(), Toast.LENGTH_SHORT).show();
 
                 }
                 else {
-                    IsolationGuidelineModel model = response.body();
+                    MayorExpressModel model = response.body();
                     binding.txGuideline.setText(Html.fromHtml(Html.fromHtml(model.getData().getDescription()).toString()));
                 }
 
@@ -62,7 +62,7 @@ String getUserToken="";
             }
 
             @Override
-            public void onFailure(@NonNull Call< IsolationGuidelineModel> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call< MayorExpressModel> call, @NonNull Throwable t) {
                 Log.e("dgfdgfdg", t.getMessage(), t);
             }
         });

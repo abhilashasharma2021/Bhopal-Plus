@@ -79,5 +79,10 @@
     <string name="bhopal_smart_city">Bhopal Smart City</string>
     <string name="food">Food</string>
     <string name="isolation_guidelines">Isolation Guidelines</string>
+    <string name="vaccination_center">Vaccination Center</string>
+    <string name="sign_in_sign_up">Sign In / Sign Up</string>
+    <string name="vaccination_registration_you_can_register_n_yourself_for_vaccine">Vaccination Registration : You can register /n yourself for vaccine</string>
+    <string name="mayor_express">Mayor Express</string>
+    <string name="post_covid_diet">Post Covid Diet</string>
 
 </resources>
