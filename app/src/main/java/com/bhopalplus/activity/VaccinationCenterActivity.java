@@ -60,6 +60,8 @@ public class VaccinationCenterActivity extends AppCompatActivity {
         call.enqueue(new Callback<VaccinationCenterModel>() {
             @Override
             public void onResponse(Call<VaccinationCenterModel> call, Response<VaccinationCenterModel> response) {
+
+                Log.e("gdfgdfgfd", response.toString());
                 if (!response.isSuccessful()) {
                     dialogInterface.hideDialog();
 
@@ -74,6 +76,8 @@ public class VaccinationCenterActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
 
+
+                                    Log.e("lkdkflkkl", "onClick: "+model.getUrl() );
                                     startActivity(new Intent(VaccinationCenterActivity.this,WebviewSignInVaccinationCenterActivity.class));
                                     SharedHelper.putKey(getApplicationContext(), AppConstats.SIGNIN_URL,model.getUrl());
                                 }

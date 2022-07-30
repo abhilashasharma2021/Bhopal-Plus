@@ -3,6 +3,7 @@ package com.bhopalplus.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import com.bhopalplus.databinding.ActivityWebviewSignInVaccinationCenterBinding;
 import com.bhopalplus.utils.AppConstats;
@@ -17,6 +18,8 @@ String getUrl="";
         binding = ActivityWebviewSignInVaccinationCenterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getUrl = SharedHelper.getKey(WebviewSignInVaccinationCenterActivity.this, AppConstats.SIGNIN_URL);
+
+        Log.e("dfldksjfkljd", "onCreate: "+ getUrl);
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +29,6 @@ String getUrl="";
             }
         });
         binding.wb.getSettings().setJavaScriptEnabled(true);
-        binding.wb.loadUrl(getUrl);
+        binding.wb.loadUrl("https://www.findmytowedcar.com/");
     }
 }
